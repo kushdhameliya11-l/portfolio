@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="capcutGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#020408"/>
+      <stop offset="100%" stop-color="#0b1120"/>
+    </linearGradient>
+    <linearGradient id="capcutAccent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f5ff"/>
+      <stop offset="100%" stop-color="#ffffff"/>
+    </linearGradient>
+  </defs>
+  <rect width="100" height="100" rx="22" fill="url(#capcutGrad)" stroke="rgba(0, 245, 255, 0.3)" stroke-width="2"/>
+  
+  <!-- Official CapCut Dual Ribbon Film Mark -->
+  <!-- Upper Ribbon Trapezoid -->
+  <path d="M18 30 C18 26 21 23 25 24 L78 36 C82 37 84 41 82 45 L77 56 C75 60 70 61 66 59 L21 41 C19 40 18 36 18 30 Z" 
+        fill="#ffffff" opacity="0.95"/>
+        
+  <!-- Lower Ribbon Trapezoid -->
+  <path d="M18 70 C18 74 21 77 25 76 L78 64 C82 63 84 59 82 55 L77 44 C75 40 70 39 66 41 L21 59 C19 60 18 64 18 70 Z" 
+        fill="#ffffff" opacity="0.95"/>
+        
+  <!-- Center Negative Cut Dynamic Glow Dot -->
+  <circle cx="50" cy="50" r="4" fill="var(--neon-cyan, #00f5ff)"/>
+</svg>

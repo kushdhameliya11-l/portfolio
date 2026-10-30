@@ -1,0 +1,4570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="theme-color" content="#020408">
+  <meta name="description" content="Arya Akbari - Lead Video Editor & Motion Graphics Architect. High-impact YouTube pacing, cinematic color grading, retention editing, and visual brand identity.">
+  <meta name="author" content="Arya Akbari">
+  <!-- Ultra-Crisp Cinema Playhead Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23020408'/%3E%3Cpolygon points='11,7 25,16 11,25' fill='%2300f5ff'/%3E%3Cpolygon points='11,7 19,16 11,25' fill='%2310b981' opacity='0.7'/%3E%3C/svg%3E">
+  <title>Arya Akbari — Lead Video Editor & Motion Architect</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Tall, Aesthetic, Sleek Editorial Typography (No Squashed/Short Fonts) -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cinzel:wght@600;700;800;900&family=Epilogue:wght@600;700;800;900&family=Space+Grotesk:wght@500;600;700&family=Urbanist:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+  <!-- Three.js for 3D Video Editing Universe -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  
+  <style>
+    :root {
+      /* CINEMATIC VELVET DARK & SOFT CRIMSON PALETTE (EXACT SYNERGY WITH ARYA'S RESUME) */
+      --bg-pitch: #060202;
+      --bg-surface: #0e0505;
+      --card-glass: rgba(18, 6, 7, 0.88);
+      --card-border: rgba(186, 24, 27, 0.25);
+      --card-hover-border: #e50914;
+      --crimson-accent: #e50914;
+      --crimson-soft: #ba181b;
+      --ruby-bright: #ff2a40;
+      --wine-deep: #660708;
+      --neon-amber: #f59e0b;
+      --neon-rose: #ff334b;
+      --neon-cyan: #ff2a40; /* Harmonized with soft ruby */
+      --neon-emerald: #f59e0b; /* Warm golden amber accent */
+      --text-white: #ffffff;
+      --text-bright: #fbf5f5;
+      --text-muted: #c9baba;
+      --text-dim: #8a7a7a;
+      /* TALL, AESTHETIC, SLEEK TYPOGRAPHY (ELONGATED, CINEMATIC, HIGH X-HEIGHT) */
+      --font-hero: 'Bebas Neue', 'Urbanist', sans-serif;
+      --font-title: 'Bebas Neue', 'Urbanist', sans-serif;
+      --font-body: 'Urbanist', sans-serif;
+      --font-mono: 'Urbanist', sans-serif;
+      --font-hud: 'Bebas Neue', 'Urbanist', sans-serif;
+      --font-accent: 'Urbanist', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* SIGNATURE GLOWING STUDIO DOT CURSOR (AS REQUESTED: THE SLEEK FUTURISTIC DOT) */
+    @media (hover: hover) and (pointer: fine) {
+      *, html, body, a/* Cursor restored */
+    }
+
+    .cursor-core { pointer-events: none !important;
+      display: block !important;
+      position: fixed;
+      width: 9px;
+      height: 9px;
+      background: #ffffff;
+      border-radius: 50%;
+      pointer-events: none !important;
+      z-index: 2147483647 !important;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 0 15px var(--ruby-bright), 0 0 30px #e50914, 0 0 50px rgba(186, 24, 27, 0.6);
+      transition: transform 0.05s ease-out;
+    }
+
+    .cursor-reticle { pointer-events: none !important;
+      display: block !important;
+      position: fixed;
+      width: 38px;
+      height: 38px;
+      border: 1.5px solid var(--ruby-bright);
+      border-radius: 50%;
+      pointer-events: none !important;
+      z-index: 2147483646 !important;
+      transform: translate(-50%, -50%);
+      transition: width 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
+                  height 0.22s cubic-bezier(0.16, 1, 0.3, 1), 
+                  border-color 0.22s, background-color 0.22s;
+    }
+
+    .cursor-reticle.active {
+      width: 58px;
+      height: 58px;
+      border-color: var(--neon-emerald);
+      background: rgba(16, 185, 129, 0.12);
+      box-shadow: 0 0 25px rgba(16, 185, 129, 0.4);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-pitch);
+      color: var(--text-white);
+      font-family: var(--font-body);
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    body {
+      background-color: var(--bg-pitch);
+      color: var(--text-white);
+      position: relative;
+      min-height: 100vh;
+      line-height: 1.6;
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    /* 3D WebGL Canvas Layer (Fixed Background) */
+    #webglCanvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.88;
+    }
+
+    /* Left-to-Right Studio Scrim Vignette: Keeps text 100% crisp and readable */
+    .viewport-readability-scrim {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 2;
+      pointer-events: none;
+      background: linear-gradient(
+        90deg,
+        rgba(2, 4, 8, 0.96) 0%,
+        rgba(2, 4, 8, 0.92) 36%,
+        rgba(2, 4, 8, 0.65) 60%,
+        rgba(2, 4, 8, 0.15) 100%
+      );
+    }
+
+    /* Volumetric Studio Lighting */
+    .studio-glow {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(140px);
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.18;
+    }
+    .glow-cyan {
+      top: -10%;
+      right: 5%;
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, var(--neon-cyan) 0%, transparent 70%);
+    }
+    .glow-emerald {
+      bottom: 10%;
+      left: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--neon-emerald) 0%, transparent 70%);
+    }
+
+    /* Precision Studio Cursor (Desktop Only) */
+    .cursor-label { display: none !important; }
+    .cursor-reticle { pointer-events: none !important; display: block; position: fixed; width: 34px; height: 34px; border: 1.5px solid rgba(0, 245, 255, 0.5); border-radius: 50%; pointer-events: none !important; z-index: 2147483647 !important; transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s; }
+    @media (hover: hover) and (pointer: fine) {
+      .cursor-core { pointer-events: none !important;
+        display: block;
+        position: fixed;
+        width: 8px;
+        height: 8px;
+        background: #ffffff;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 99999;
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 12px var(--neon-cyan);
+        transition: transform 0.08s ease-out;
+      }
+      .cursor-reticle { pointer-events: none !important;
+        display: block;
+        position: fixed;
+        width: 38px;
+        height: 38px;
+        border: 1.5px solid var(--ruby-bright);
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 99998;
+        transform: translate(-50%, -50%);
+        transition: width 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+                    height 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+                    border-color 0.25s, background-color 0.25s;
+      }
+      .cursor-reticle.active {
+        width: 64px;
+        height: 64px;
+        border-color: var(--neon-emerald);
+        background: rgba(16, 185, 129, 0.08);
+      }
+      .cursor-label {
+        position: fixed;
+        pointer-events: none;
+        z-index: 99999;
+        font-family: var(--font-mono);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 1.5px;
+        color: #000;
+        background: var(--neon-cyan);
+        padding: 2px 7px;
+        border-radius: 4px;
+        transform: translate(16px, 16px);
+      }
+    }
+
+    /* Sparkling Interactive Particles */
+    .spark-node {
+      position: fixed;
+      pointer-events: none;
+      border-radius: 50%;
+      z-index: 99997;
+      animation: sparkFly 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes sparkFly {
+      0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+      100% { opacity: 0; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.1); }
+    }
+
+    /* Content Stage */
+    .content-stage {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+    }
+
+    .container {
+      max-width: 1260px;
+      margin: 0 auto;
+      padding: 0 24px;
+      width: 100%;
+    }
+
+    /* ================= CLEAN, SLEEK TOP BAR ================= */
+    
+    
+    /* ========================================================
+       FINAL DETAILING TOUCHES: POLISHED MASTERWORK STYLING
+       ======================================================== */
+
+    /* Draggable Split Divider Glow Handle with Chevrons */
+    .split-divider::after {
+      content: '◀ ▶';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: #020408;
+      border: 2px solid var(--neon-cyan);
+      color: var(--neon-cyan);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      box-shadow: 0 0 20px rgba(0, 245, 255, 0.7);
+      white-space: nowrap;
+      pointer-events: none;
+      transition: all 0.2s ease;
+    }
+
+    .compare-container:hover .split-divider::after {
+      transform: translate(-50%, -50%) scale(1.15);
+      box-shadow: 0 0 30px var(--neon-cyan);
+      background: rgba(0, 245, 255, 0.15);
+      color: #fff;
+    }
+
+    /* Interactive Speed Ramp Preset Pill Buttons */
+    .speed-presets-row {
+      display: flex;
+      gap: 6px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-speed-preset {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 245, 255, 0.2);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-speed-preset:hover, .btn-speed-preset.active {
+      background: rgba(0, 245, 255, 0.18);
+      border-color: var(--neon-cyan);
+      color: var(--neon-cyan);
+      box-shadow: 0 0 12px rgba(0, 245, 255, 0.3);
+      transform: translateY(-1px);
+    }
+
+    /* Modal Navigation Buttons (Prev / Next) */
+    .modal-nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(2, 6, 14, 0.85);
+      border: 1px solid rgba(0, 245, 255, 0.35);
+      color: var(--neon-cyan);
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 20;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      backdrop-filter: blur(10px);
+    }
+
+    .modal-nav-btn:hover {
+      background: var(--neon-cyan);
+      color: #020408;
+      box-shadow: 0 0 25px rgba(0, 245, 255, 0.8);
+      transform: translateY(-50%) scale(1.12);
+    }
+
+    .modal-nav-btn.prev { left: 16px; }
+    .modal-nav-btn.next { right: 16px; }
+
+    .modal-counter-badge {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: var(--neon-emerald);
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-left: 8px;
+    }
+
+    /* Floating Back to Top Button */
+    .btn-floating-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: rgba(10, 16, 30, 0.88);
+      border: 1px solid rgba(0, 245, 255, 0.35);
+      color: var(--neon-cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+      z-index: 990;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(20px);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+    }
+
+    .btn-floating-top.visible {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .btn-floating-top:hover {
+      background: var(--neon-cyan);
+      color: #020408;
+      box-shadow: 0 0 25px var(--neon-cyan);
+      transform: translateY(-4px) scale(1.08);
+    }
+
+    /* Software Tools Signature Neon Glow on Hover */
+    .sw-card:nth-child(1):hover { border-color: #9999ff; box-shadow: 0 10px 35px rgba(153, 153, 255, 0.25); }
+    .sw-card:nth-child(2):hover { border-color: #31a8ff; box-shadow: 0 10px 35px rgba(49, 168, 255, 0.25); }
+    .sw-card:nth-child(3):hover { border-color: #00c4cc; box-shadow: 0 10px 35px rgba(0, 196, 204, 0.25); }
+    .sw-card:nth-child(4):hover { border-color: #cf96fd; box-shadow: 0 10px 35px rgba(207, 150, 253, 0.25); }
+    .sw-card:nth-child(5):hover { border-color: #00a651; box-shadow: 0 10px 35px rgba(0, 166, 81, 0.25); }
+    .sw-card:nth-child(6):hover { border-color: #ff7262; box-shadow: 0 10px 35px rgba(255, 114, 98, 0.25); }
+    .software-tile.sw-capcut:hover { border-color: #00f5ff; box-shadow: 0 10px 35px rgba(0, 245, 255, 0.3); }
+
+    /* Direct Phone Call Button in Contact Section */
+    .btn-phone-direct {
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: var(--neon-emerald);
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-phone-direct:hover {
+      background: var(--neon-emerald);
+      color: #020408;
+      box-shadow: 0 0 25px var(--neon-emerald);
+      transform: translateY(-3px);
+    }
+
+    
+    
+    /* ========================================================
+       HERO SPLIT GRID & ARYA AKBARI DIRECTOR SHOWCASE POD
+       ======================================================== */
+    .hero-split-grid {
+      display: grid;
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: 36px;
+      align-items: center;
+      position: relative;
+      z-index: 10;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-split-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+    }
+
+    
+    /* ========================================================
+       PREMIERE & YOUTUBE SCENE TRANSITIONS & TIMELINE STYLING
+       ======================================================== */
+    .hud-sequence-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hud-seq-play-icon {
+      color: var(--neon-emerald);
+      font-size: 11px;
+      animation: pulseLive 1.5s infinite;
+    }
+
+    .hud-seq-name {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 1px;
+    }
+
+    .hud-scene-counter {
+      font-family: var(--font-hud);
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--neon-cyan);
+      background: rgba(0, 245, 255, 0.08);
+      border: 1px solid rgba(0, 245, 255, 0.25);
+      padding: 3px 8px;
+      border-radius: 4px;
+      letter-spacing: 1px;
+    }
+
+    /* Mini Premiere Timeline Track Bar */
+    .mini-timeline-bar {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      background: #020408;
+      border-bottom: 1px solid rgba(0, 245, 255, 0.15);
+      position: relative;
+    }
+
+    .timeline-clip {
+      padding: 7px 6px;
+      text-align: center;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      color: var(--text-dim);
+      border-right: 1px solid rgba(255, 255, 255, 0.06);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      background: rgba(255, 255, 255, 0.02);
+      user-select: none;
+    }
+
+    .timeline-clip:hover {
+      background: rgba(0, 245, 255, 0.08);
+      color: #fff;
+    }
+
+    .timeline-clip.active {
+      color: #020408;
+      font-weight: 800;
+    }
+
+    .timeline-clip.clip-1.active { background: var(--neon-cyan); box-shadow: 0 0 15px rgba(0, 245, 255, 0.6); }
+    .timeline-clip.clip-2.active { background: #94a3b8; box-shadow: 0 0 15px rgba(148, 163, 184, 0.6); }
+    .timeline-clip.clip-3.active { background: var(--neon-emerald); box-shadow: 0 0 15px rgba(16, 185, 129, 0.6); }
+
+    .timeline-scrub-playhead {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #ffffff;
+      box-shadow: 0 0 10px #ffffff;
+      pointer-events: none;
+      transition: left 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      left: 16%;
+    }
+
+    /* Anamorphic Whip & Light Leak Overlays */
+    .whip-transition-layer {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      pointer-events: none;
+      opacity: 0;
+      z-index: 8;
+      overflow: hidden;
+      background: rgba(0, 0, 0, 0);
+    }
+
+    .whip-light-streak {
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 150%;
+      left: -150%;
+      background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(0, 245, 255, 0.2) 20%, 
+        rgba(255, 255, 255, 0.98) 50%, 
+        rgba(16, 185, 129, 0.45) 75%, 
+        transparent 100%
+      );
+      transform: skewX(-24deg);
+      filter: blur(6px);
+    }
+
+    .whip-chromatic-rgb {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(45deg, rgba(255, 0, 80, 0.28), rgba(0, 245, 255, 0.28));
+      mix-blend-mode: screen;
+      opacity: 0;
+    }
+
+    /* Whip Cut Animation */
+    @keyframes animWhipStreak {
+      0% { left: -150%; opacity: 1; }
+      50% { left: -20%; opacity: 1; }
+      100% { left: 120%; opacity: 0; }
+    }
+
+    @keyframes animJumpFlash {
+      0% { opacity: 0; }
+      30% { opacity: 0.95; background: #ffffff; }
+      100% { opacity: 0; }
+    }
+
+    .transitioning-whip .whip-transition-layer {
+      opacity: 1;
+    }
+    .transitioning-whip .whip-light-streak {
+      animation: animWhipStreak 0.42s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .transitioning-whip .whip-chromatic-rgb {
+      opacity: 1;
+      transition: opacity 0.35s ease;
+    }
+    .transitioning-whip .director-main-img {
+      transform: scale(1.08) translateX(-15px);
+      filter: blur(5px) contrast(1.25);
+    }
+
+    .transitioning-jump .whip-transition-layer {
+      animation: animJumpFlash 0.22s ease-out forwards;
+    }
+    .transitioning-jump .director-main-img {
+      transform: scale(1.05);
+      filter: brightness(1.2);
+    }
+
+    /* Cut Actions Buttons */
+    .cut-actions-wrap {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-cut-action {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 245, 255, 0.25);
+      border-radius: 8px;
+      padding: 6px 12px;
+      color: #ffffff;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-cut-action:hover {
+      background: rgba(0, 245, 255, 0.2);
+      border-color: var(--neon-cyan);
+      color: var(--neon-cyan);
+      box-shadow: 0 0 16px rgba(0, 245, 255, 0.35);
+      transform: translateY(-2px);
+    }
+
+    .btn-jump-cut:hover {
+      border-color: var(--neon-rose);
+      color: var(--neon-rose);
+      box-shadow: 0 0 16px rgba(244, 63, 94, 0.35);
+    }
+
+    .pod-timecode-box {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      font-family: var(--font-mono);
+    }
+
+    .timecode-label {
+      font-size: 8px;
+      color: var(--text-dim);
+      letter-spacing: 1px;
+    }
+
+    .timecode-val {
+      font-family: var(--font-hud);
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--neon-cyan);
+      letter-spacing: 1px;
+    }
+
+    /* Cinematic Scene Transition Divider between sections */
+    .scene-transition-divider {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 70px 0 30px 0;
+      position: relative;
+      z-index: 10;
+    }
+
+    .divider-track-line {
+      width: 100%;
+      max-width: 800px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, rgba(0, 245, 255, 0.45) 50%, transparent 100%);
+      position: relative;
+    }
+
+    .divider-playhead-gem {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+      width: 10px;
+      height: 10px;
+      background: var(--neon-cyan);
+      box-shadow: 0 0 15px var(--neon-cyan), 0 0 25px var(--neon-emerald);
+      animation: pulseLive 2s infinite;
+    }
+
+    .divider-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      color: var(--neon-cyan);
+      margin-top: 10px;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+
+    /* Director Pod Outer Container */
+    .hero-director-col {
+      display: flex;
+      justify-content: center;
+      perspective: 1200px;
+    }
+
+    .director-pod-card {
+      width: 100%;
+      max-width: 440px;
+      background: rgba(10, 16, 30, 0.85);
+      border: 1px solid rgba(0, 245, 255, 0.28);
+      border-radius: 20px;
+      overflow: hidden;
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 30px rgba(0, 245, 255, 0.15);
+      position: relative;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s, border-color 0.35s;
+    }
+
+    .director-pod-card:hover {
+      border-color: var(--neon-cyan);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 0 45px rgba(0, 245, 255, 0.35);
+    }
+
+    /* Video Editor HUD Header */
+    .director-hud-bar {
+      padding: 10px 16px;
+      background: rgba(2, 4, 8, 0.9);
+      border-bottom: 1px solid rgba(0, 245, 255, 0.18);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .hud-indicator-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hud-rec-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--neon-rose);
+      box-shadow: 0 0 10px var(--neon-rose);
+      animation: pulseLive 1.5s infinite;
+    }
+
+    .hud-rec-text {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: 1.2px;
+    }
+
+    .hud-timecode-tag {
+      font-family: var(--font-hud);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: var(--neon-cyan);
+      background: rgba(0, 245, 255, 0.08);
+      padding: 3px 8px;
+      border-radius: 4px;
+      border: 1px solid rgba(0, 245, 255, 0.2);
+    }
+
+    /* Photo Frame with Anamorphic Camera HUD */
+    .director-photo-frame {
+      position: relative;
+      width: 100%;
+      height: 440px;
+      background: #020408;
+      overflow: hidden;
+    }
+
+    .director-main-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: opacity 0.4s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), filter 0.4s ease;
+      filter: contrast(1.05) brightness(1.02);
+    }
+
+    .director-pod-card:hover .director-main-img {
+      transform: scale(1.04);
+    }
+
+    
+
+    /* Dual Expertise Floating Badges */
+    .floating-badge {
+      position: absolute;
+      background: rgba(2, 6, 14, 0.88);
+      border: 1px solid rgba(0, 245, 255, 0.35);
+      border-radius: 10px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+      transition: all 0.3s ease;
+      z-index: 5;
+    }
+
+    .floating-badge:hover {
+      border-color: var(--neon-cyan);
+      box-shadow: 0 10px 30px rgba(0, 245, 255, 0.35);
+      transform: translateY(-2px);
+    }
+
+    .floating-badge.badge-video {
+      top: 20px;
+      left: 20px;
+      border-left: 3px solid var(--neon-cyan);
+    }
+
+    .floating-badge.badge-design {
+      bottom: 20px;
+      right: 20px;
+      border-right: 3px solid var(--neon-emerald);
+    }
+
+    .fb-icon { font-size: 16px; }
+    .fb-text { display: flex; flex-direction: column; }
+    .fb-text strong {
+      font-family: var(--font-title);
+      font-size: 13px;
+      color: #fff;
+      letter-spacing: 0.8px;
+      line-height: 1.1;
+    }
+    .fb-text small {
+      font-family: var(--font-mono);
+      font-size: 9px;
+      color: var(--neon-cyan);
+      letter-spacing: 0.5px;
+      margin-top: 2px;
+    }
+
+    /* Director Interactive Controls Strip */
+    .director-controls-strip {
+      padding: 12px 16px;
+      background: rgba(2, 6, 14, 0.95);
+      border-top: 1px solid rgba(0, 245, 255, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .pod-ctrl-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(0, 245, 255, 0.25);
+      border-radius: 999px;
+      padding: 6px 12px;
+      color: var(--text-bright);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .pod-ctrl-btn:hover, .pod-ctrl-btn.active {
+      background: rgba(0, 245, 255, 0.16);
+      border-color: var(--neon-cyan);
+      color: var(--neon-cyan);
+      box-shadow: 0 0 15px rgba(0, 245, 255, 0.3);
+    }
+
+    .ctrl-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--neon-cyan);
+    }
+
+    .pod-retention-pill {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      font-family: var(--font-mono);
+    }
+    .pod-retention-pill span {
+      font-size: 8px;
+      color: var(--text-dim);
+      letter-spacing: 1px;
+    }
+    .pod-retention-pill strong {
+      font-size: 13px;
+      color: var(--neon-emerald);
+      letter-spacing: 0.5px;
+    }
+
+    .director-signature-caption {
+      padding: 10px 16px;
+      background: rgba(2, 4, 8, 0.98);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+    .director-signature-caption strong {
+      color: #fff;
+      letter-spacing: 1.5px;
+    }
+    .director-signature-caption span {
+      color: var(--neon-cyan);
+    }
+
+    
+    /* Soft Crimson Theme & Viral Reels Vault Styling */
+    .top-bar-cta-reels {
+      background: linear-gradient(135deg, #ba181b 0%, #e50914 100%);
+      color: #ffffff;
+      padding: 6px 14px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 0 15px rgba(229, 9, 20, 0.4);
+      transition: all 0.25s ease;
+    }
+    .top-bar-cta-reels:hover {
+      box-shadow: 0 0 25px rgba(229, 9, 20, 0.7);
+      transform: translateY(-2px) scale(1.03);
+    }
+
+    .btn-reels-pulse {
+      background: linear-gradient(135deg, #ba181b 0%, #e50914 100%) !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 25px rgba(229, 9, 20, 0.5) !important;
+      border: 1px solid rgba(255, 75, 96, 0.4) !important;
+    }
+    .btn-reels-pulse:hover {
+      box-shadow: 0 6px 35px rgba(229, 9, 20, 0.8) !important;
+      transform: translateY(-3px) scale(1.02);
+    }
+
+    .btn-pod-reels {
+      background: rgba(229, 9, 20, 0.15) !important;
+      border-color: rgba(229, 9, 20, 0.4) !important;
+      color: #ff4b60 !important;
+      text-decoration: none !important;
+    }
+    .btn-pod-reels:hover {
+      background: #e50914 !important;
+      color: #ffffff !important;
+      box-shadow: 0 0 20px rgba(229, 9, 20, 0.6) !important;
+    }
+
+    /* Reels Vault Banner Card */
+    .reels-vault-banner-card {
+      background: linear-gradient(135deg, rgba(30, 8, 10, 0.95) 0%, rgba(12, 4, 5, 0.95) 100%);
+      border: 1px solid rgba(229, 9, 20, 0.35);
+      border-radius: 20px;
+      padding: 30px 36px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.8), 0 0 30px rgba(186, 24, 27, 0.2);
+      backdrop-filter: blur(20px);
+      flex-wrap: wrap;
+    }
+
+    .reels-tag-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      color: #ff4b60;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .pulse-red-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #e50914;
+      box-shadow: 0 0 10px #e50914;
+      animation: pulseLive 1.5s infinite;
+    }
+
+    .reels-banner-title {
+      font-family: var(--font-title);
+      font-size: clamp(24px, 3.5vw, 36px);
+      letter-spacing: 1.5px;
+      color: #ffffff;
+      margin-bottom: 10px;
+    }
+
+    .reels-banner-desc {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin-bottom: 16px;
+    }
+
+    .reels-metrics-chips {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .chip-item {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 75, 96, 0.25);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: #fbf5f5;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-open-reels-large {
+      background: linear-gradient(135deg, #ba181b 0%, #e50914 100%);
+      color: #ffffff;
+      padding: 16px 32px;
+      border-radius: 12px;
+      font-family: var(--font-title);
+      font-size: 18px;
+      letter-spacing: 1.5px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 8px 30px rgba(229, 9, 20, 0.5);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      white-space: nowrap;
+    }
+    .btn-open-reels-large:hover {
+      box-shadow: 0 10px 45px rgba(229, 9, 20, 0.85);
+      transform: translateY(-3px) scale(1.03);
+    }
+
+    /* Official Software Logos Box & Image Styling */
+    .sw-logo-box {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 6px;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .software-tile:hover .sw-logo-box {
+      transform: scale(1.12) rotate(-3deg);
+      border-color: rgba(0, 245, 255, 0.5);
+      box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+      background: rgba(0, 245, 255, 0.08);
+    }
+
+    .sw-logo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+    }
+
+    /* Work Card Thumbnail Hover Overlay */
+    .work-thumb-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(2, 4, 8, 0.65);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      backdrop-filter: blur(4px);
+    }
+
+    .work-card:hover .work-thumb-overlay {
+      opacity: 1;
+    }
+
+    .work-thumb-hover-btn {
+      background: var(--neon-cyan);
+      color: #020408;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.2px;
+      padding: 8px 18px;
+      border-radius: 999px;
+      box-shadow: 0 0 25px var(--neon-cyan);
+      transform: translateY(8px);
+      transition: transform 0.3s ease;
+    }
+
+    .work-card:hover .work-thumb-hover-btn {
+      transform: translateY(0);
+    }
+
+    /* Interactive Tall Aesthetic Font Switcher */
+    .font-preset-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(0, 245, 255, 0.08);
+      border: 1px solid rgba(0, 245, 255, 0.35);
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--neon-cyan);
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 0 15px rgba(0, 245, 255, 0.15);
+    }
+
+    .font-preset-btn:hover {
+      background: rgba(0, 245, 255, 0.22);
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 22px rgba(0, 245, 255, 0.45);
+      transform: translateY(-2px);
+    }
+
+    .font-preset-icon {
+      font-size: 12px;
+      color: var(--neon-cyan);
+      animation: spinPreset 6s linear infinite;
+    }
+
+    @keyframes spinPreset {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .studio-top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(2, 4, 8, 0.94);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0, 245, 255, 0.15);
+      padding: 10px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .top-bar-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .top-bar-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--neon-emerald);
+      box-shadow: 0 0 10px var(--neon-emerald);
+      animation: pulseLive 1.8s infinite;
+    }
+
+    @keyframes pulseLive {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(1.3); }
+    }
+
+    .top-bar-brand-title {
+      font-family: var(--font-title);
+      font-weight: 800;
+      font-size: 14px;
+      letter-spacing: 1.5px;
+      color: #ffffff;
+    }
+
+    .top-bar-status {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--neon-emerald);
+      letter-spacing: 1px;
+      display: none;
+    }
+    @media (min-width: 600px) {
+      .top-bar-status { display: inline; }
+    }
+
+    .top-bar-scrubber-center {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .timecode-display {
+      font-family: var(--font-hud);
+      font-size: 15px;
+      font-weight: 400;
+      color: #fff;
+      background: rgba(0, 0, 0, 0.65);
+      padding: 5px 12px;
+      border-radius: 6px;
+      border: 1px solid rgba(0, 245, 255, 0.25);
+      letter-spacing: 2px;
+      white-space: nowrap;
+    }
+    .timecode-display span.frames {
+      color: var(--neon-cyan);
+    }
+
+    .scrubber-track-wrap {
+      width: 140px;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 3px;
+      overflow: hidden;
+      display: none;
+    }
+    @media (min-width: 768px) {
+      .scrubber-track-wrap { display: block; }
+    }
+
+    .scrubber-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-emerald));
+      border-radius: 3px;
+    }
+
+    .top-bar-right-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .audio-toggle-btn {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      background: rgba(0, 245, 255, 0.08);
+      border: 1px solid rgba(0, 245, 255, 0.3);
+      color: var(--neon-cyan);
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      transition: all 0.3s;
+      white-space: nowrap;
+    }
+
+    .audio-toggle-btn:hover {
+      background: rgba(0, 245, 255, 0.2);
+      box-shadow: 0 0 15px rgba(0, 245, 255, 0.4);
+    }
+
+    .audio-toggle-btn.playing {
+      background: rgba(16, 185, 129, 0.15);
+      border-color: var(--neon-emerald);
+      color: var(--neon-emerald);
+    }
+
+    .audio-eq-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 2px;
+      height: 11px;
+    }
+
+    .eq-bar {
+      width: 2px;
+      background: currentColor;
+      border-radius: 1px;
+      height: 3px;
+    }
+
+    .audio-toggle-btn.playing .eq-bar:nth-child(1) { animation: eqJump 0.4s infinite alternate; }
+    .audio-toggle-btn.playing .eq-bar:nth-child(2) { animation: eqJump 0.6s infinite alternate 0.1s; }
+    .audio-toggle-btn.playing .eq-bar:nth-child(3) { animation: eqJump 0.35s infinite alternate 0.2s; }
+
+    @keyframes eqJump {
+      0% { height: 2px; }
+      100% { height: 11px; }
+    }
+
+    .top-bar-cta-wa {
+      background: rgba(37, 211, 102, 0.15);
+      border: 1px solid rgba(37, 211, 102, 0.4);
+      color: #25d366;
+      padding: 5px 12px;
+      border-radius: 20px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-decoration: none;
+      display: none;
+    }
+    @media (min-width: 520px) {
+      .top-bar-cta-wa { display: flex; align-items: center; gap: 4px; }
+    }
+
+    /* ================= MAIN STUDIO HEADER ================= */
+    .studio-header {
+      padding: 20px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .brand-cluster {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .brand-avatar-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, rgba(0, 245, 255, 0.2), rgba(16, 185, 129, 0.2));
+      border: 1.5px solid var(--ruby-bright);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-hud);
+      font-weight: 900;
+      font-size: 16px;
+      color: #fff;
+      box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+    }
+
+    .brand-name-text {
+      font-family: var(--font-title);
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: 1.5px;
+      color: #ffffff;
+    }
+
+    .status-sub-text {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 0.5px;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-decoration: none;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-link:hover {
+      color: var(--neon-cyan);
+    }
+
+    .btn-header-cta {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 8px 18px;
+      border-radius: 8px;
+      background: rgba(0, 245, 255, 0.08);
+      border: 1px solid var(--neon-cyan);
+      color: var(--neon-cyan);
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .btn-header-cta:hover {
+      background: var(--neon-cyan);
+      color: #020408;
+      box-shadow: 0 0 25px rgba(0, 245, 255, 0.5);
+    }
+
+    /* ================= HERO SECTION WITH UPSCALED KINETIC TYPOGRAPHY ================= */
+    .hero-zone {
+      padding: 40px 0 70px;
+      position: relative;
+    }
+
+    .hero-badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 14px;
+      border-radius: 100px;
+      background: rgba(2, 4, 8, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 245, 255, 0.3);
+      margin-bottom: 20px;
+    }
+
+    .hero-badge-pill span {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      color: var(--neon-cyan);
+    }
+
+    /* UPSCALED, WIDE, MAJESTIC GEOMETRIC HERO TYPOGRAPHY (ZERO PINCHED LOOK) */
+    .hero-arya-name {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin: 0;
+      padding: 0;
+      line-height: 0.95;
+      letter-spacing: 3px;
+      margin-bottom: 24px;
+      width: 100%;
+    }
+
+    .name-line-wrap {
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap;
+      overflow: hidden;
+      padding-bottom: 6px;
+    }
+
+    /* MRBEAST KINETIC SPRING LETTER ANIMATION */
+    .kinetic-letter {
+      display: inline-block;
+      font-family: var(--font-hero);
+      font-weight: 400;
+      font-size: clamp(68px, 13vw, 160px); letter-spacing: 2px;
+      text-transform: uppercase;
+      transform: translateY(120%) scale(0.65) rotateX(40deg);
+      opacity: 0;
+      animation: kineticPopChar 0.85s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      animation-delay: calc(0.1s + (var(--i) * 0.08s));
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), text-shadow 0.25s;
+    }
+
+    .line-arya .kinetic-letter {
+      color: #ffffff;
+      text-shadow: 0 0 40px rgba(0, 245, 255, 0.4);
+    }
+
+    .line-akbari .kinetic-letter {
+      background: linear-gradient(180deg, #ffffff 15%, #ff4b60 65%, #b60000 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation-delay: calc(0.35s + (var(--i) * 0.08s));
+    }
+
+    .kinetic-letter:hover {
+      transform: translateY(-12px) scale(1.15) rotate(-3deg);
+      text-shadow: 0 0 35px var(--neon-cyan);
+    }
+
+    @keyframes kineticPopChar {
+      0% {
+        opacity: 0;
+        transform: translateY(120%) scale(0.65) rotateX(40deg);
+        filter: blur(8px);
+      }
+      70% {
+        transform: translateY(-10%) scale(1.08) rotateX(-5deg);
+        filter: blur(0px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0%) scale(1) rotateX(0deg);
+        filter: blur(0px);
+      }
+    }
+
+    .hero-role-track {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .role-badge-main {
+      font-family: var(--font-hud);
+      font-size: 15px;
+      font-weight: 700;
+      color: #020408;
+      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-emerald));
+      padding: 6px 14px;
+      border-radius: 6px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      box-shadow: 0 4px 25px rgba(229, 9, 20, 0.45);
+    }
+
+    .role-tag-secondary {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.8px;
+    }
+
+    /* FROSTED GLASS HERO READABILITY POD */
+    .hero-readability-pod {
+      max-width: 820px;
+      width: 100%;
+      background: rgba(2, 6, 14, 0.84);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(0, 245, 255, 0.18);
+      border-radius: 18px;
+      padding: 24px;
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.75);
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    /* MRBEAST STYLE KINETIC REEL BADGES */
+    .mrbeast-kinetic-ticker {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .mrbeast-pill {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    .mrbeast-pill:hover {
+      transform: translateY(-4px) scale(1.06) rotate(1.5deg);
+    }
+
+    .pill-yellow {
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.5);
+      color: #fcd34d;
+    }
+    .pill-cyan {
+      background: rgba(0, 245, 255, 0.15);
+      border: 1px solid rgba(0, 245, 255, 0.5);
+      color: var(--neon-cyan);
+    }
+    .pill-emerald {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.5);
+      color: var(--neon-emerald);
+    }
+    .pill-rose {
+      background: rgba(244, 63, 94, 0.15);
+      border: 1px solid rgba(244, 63, 94, 0.5);
+      color: var(--neon-rose);
+    }
+
+    .hero-desc-lead {
+      font-size: 17px;
+      color: var(--text-bright);
+      line-height: 1.7;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.9);
+      margin: 0;
+    }
+
+    .hero-desc-lead strong {
+      color: #fff;
+      font-weight: 700;
+      text-shadow: 0 0 15px rgba(0, 245, 255, 0.4);
+    }
+
+    .hero-buttons-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .btn-studio {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-studio-primary {
+      background: linear-gradient(135deg, var(--neon-cyan), var(--neon-emerald));
+      color: #020408;
+      box-shadow: 0 4px 25px rgba(229, 9, 20, 0.45);
+    }
+
+    .btn-studio-primary:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 8px 35px rgba(16, 185, 129, 0.6);
+    }
+
+    .btn-studio-wa {
+      background: rgba(37, 211, 102, 0.14);
+      color: #25d366;
+      border: 1px solid rgba(37, 211, 102, 0.4);
+    }
+
+    .btn-studio-wa:hover {
+      background: #25d366;
+      color: #000;
+      box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5);
+      transform: translateY(-3px);
+    }
+
+    
+
+    .metric-pod {
+      background: var(--card-glass);
+      border: 1px solid var(--card-border);
+      padding: 18px 20px;
+      border-radius: 14px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s;
+    }
+
+    .metric-pod:hover {
+      border-color: var(--neon-cyan);
+      transform: translateY(-3px);
+    }
+
+    .metric-pod::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--neon-cyan);
+    }
+
+    .metric-number-big {
+      font-family: var(--font-title);
+      font-weight: 900;
+      font-size: 48px;
+      color: #fff;
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      line-height: 1;
+      letter-spacing: 1.5px;
+    }
+
+    .metric-number-big span {
+      font-size: 20px;
+      color: var(--neon-cyan);
+    }
+
+    .metric-caption {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-top: 6px;
+    }
+
+    /* ================= UPSCALE KINETIC SECTION TITLES & WORDS ================= */
+    section {
+      padding: 70px 0;
+      position: relative;
+      width: 100%;
+    }
+
+    .section-tagline {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--neon-cyan);
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .section-tagline::before {
+      content: '//';
+      color: var(--neon-emerald);
+      font-weight: 800;
+    }
+
+    .scroll-slide-match {
+      overflow: hidden;
+      display: block;
+      margin-bottom: 24px;
+    }
+
+    .scroll-slide-title {
+      font-family: var(--font-title);
+      font-size: clamp(36px, 6vw, 64px); letter-spacing: 2px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      line-height: 1.15;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 0;
+    }
+
+    /* KINETIC WORD-BY-WORD ANIMATION ACROSS EVERY SECTION HEADING */
+    .kinetic-word {
+      display: inline-block;
+      transform: translateY(115%) scale(0.92);
+      opacity: 0;
+      transition: transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s ease;
+    }
+
+    .scroll-slide-match.slide-active .kinetic-word {
+      transform: translateY(0%) scale(1);
+      opacity: 1;
+    }
+
+    .scroll-slide-match.slide-active .kinetic-word:nth-child(1) { transition-delay: 0.05s; }
+    .scroll-slide-match.slide-active .kinetic-word:nth-child(2) { transition-delay: 0.12s; }
+    .scroll-slide-match.slide-active .kinetic-word:nth-child(3) { transition-delay: 0.19s; }
+    .scroll-slide-match.slide-active .kinetic-word:nth-child(4) { transition-delay: 0.26s; }
+    .scroll-slide-match.slide-active .kinetic-word:nth-child(5) { transition-delay: 0.33s; }
+
+    .section-lead-text {
+      max-width: 680px;
+      color: var(--text-bright);
+      font-size: 16px;
+      margin-top: 4px;
+      margin-bottom: 36px;
+    }
+
+    /* ================= INTERACTIVE VIDEO SUITE: COLOR GRADATION (CINEMATIC SCENERY) & SFX ================= */
+    .video-suite-container {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      margin-bottom: 40px;
+      width: 100%;
+    }
+    @media (max-width: 900px) {
+      .video-suite-container { grid-template-columns: 1fr; }
+    }
+
+    /* Panel 1: Interactive Before & After Color Grading Comparison (CINEMATIC SCENERY) */
+    .grading-box-panel {
+      background: var(--card-glass);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 24px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .panel-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .panel-badge {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--neon-cyan);
+      background: rgba(0, 245, 255, 0.1);
+      border: 1px solid rgba(0, 245, 255, 0.25);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .panel-title {
+      font-family: var(--font-title);
+      font-size: 26px;
+      font-weight: 400;
+      color: #fff;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    /* Split-Screen Compare Stage (Featuring cinematic_scenery.jpg) */
+    .split-compare-stage {
+      position: relative;
+      width: 100%;
+      height: 310px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 245, 255, 0.25);
+      margin-bottom: 16px;
+      background: #000;
+      user-select: none;
+    }
+
+    /* Graded image (Base: Breathtaking Golden Hour Cinematic Landscape) */
+    .compare-img-graded {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(1.3) contrast(1.15);
+    }
+
+    /* Raw S-Log image (Clipped: Flat Camera Sensor Simulation) */
+    .compare-img-raw-wrap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      clip-path: polygon(0 0, 50% 0, 50% 100%, 0 100%);
+      transition: clip-path 0.05s ease;
+    }
+
+    .compare-img-raw {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(0.7) contrast(0.6) brightness(1.16);
+    }
+
+    /* Split divider handle */
+    .split-divider-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      background: #fff;
+      box-shadow: 0 0 12px var(--neon-cyan);
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .split-handle-knob {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 32px;
+      height: 32px;
+      background: var(--neon-cyan);
+      color: #000;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 900;
+      box-shadow: 0 0 15px var(--neon-cyan);
+    }
+
+    .compare-tag-left {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(0, 0, 0, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 4px 9px;
+      border-radius: 4px;
+      pointer-events: none;
+    }
+
+    .compare-tag-right {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: rgba(0, 0, 0, 0.85);
+      border: 1px solid var(--neon-cyan);
+      color: var(--neon-cyan);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 4px 9px;
+      border-radius: 4px;
+      pointer-events: none;
+    }
+
+    /* Range slider input */
+    .compare-range-slider {
+      width: 100%;
+      accent-color: var(--neon-cyan);
+      cursor: pointer;
+      margin-bottom: 12px;
+    }
+
+    .compare-caption-text {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Panel 2: Interactive SFX Soundboard & Speed Ramp Simulator */
+    .motion-sound-panel {
+      background: var(--card-glass);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 24px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .sfx-soundboard-title {
+      font-family: var(--font-title);
+      font-size: 26px;
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 6px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .sfx-soundboard-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    /* Soundboard Buttons Grid */
+    .sfx-buttons-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .btn-sfx-trigger {
+      background: rgba(0, 245, 255, 0.06);
+      border: 1px solid rgba(0, 245, 255, 0.2);
+      border-radius: 10px;
+      padding: 12px 14px;
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: all 0.25s;
+      text-align: left;
+    }
+
+    .btn-sfx-trigger:hover {
+      background: rgba(0, 245, 255, 0.15);
+      border-color: var(--neon-cyan);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0, 245, 255, 0.25);
+    }
+
+    .btn-sfx-trigger:active {
+      transform: scale(0.97);
+    }
+
+    .btn-sfx-trigger span.ico {
+      font-size: 16px;
+    }
+
+    /* Live Speed Ramp Curve Box */
+    .speed-ramp-visual-box {
+      background: rgba(2, 6, 14, 0.9);
+      border: 1px solid rgba(0, 245, 255, 0.18);
+      border-radius: 12px;
+      padding: 14px;
+    }
+
+    .speed-ramp-header {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+    }
+
+    .speed-ramp-tag {
+      color: var(--neon-emerald);
+      font-weight: 800;
+    }
+
+    .speed-curve-track {
+      width: 100%;
+      height: 48px;
+      position: relative;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 8px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+    }
+
+    .speed-curve-svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ================= 6 CURATED WORKS ARCHIVE WITH ANAMORPHIC CUT FLASH ================= */
+    .works-grid-six {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 36px;
+      width: 100%;
+    }
+    @media (max-width: 900px) {
+      .works-grid-six { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .works-grid-six { grid-template-columns: 1fr; }
+    }
+
+    .work-card {
+      cursor: pointer;
+      touch-action: manipulation;
+      background: var(--card-glass);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+                  border-color 0.4s, box-shadow 0.4s;
+      position: relative;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .work-card:hover {
+      border-color: var(--card-hover-border);
+      transform: translateY(-6px);
+      box-shadow: 0 15px 40px rgba(0, 245, 255, 0.2);
+    }
+
+    .work-thumb-wrap {
+      width: 100%;
+      height: 260px;
+      background: #000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* MRBEAST / MOVIE TRAILER ANAMORPHIC CUT FLASH ON HOVER */
+    .work-thumb-wrap::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -130%;
+      width: 80%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.4), rgba(255, 255, 255, 0.8), rgba(0, 245, 255, 0.4), transparent);
+      transform: skewX(-22deg);
+      pointer-events: none;
+      transition: none;
+    }
+
+    .work-card:hover .work-thumb-wrap::after {
+      left: 150%;
+      transition: left 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .work-thumb-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .work-card:hover .work-thumb-img {
+      transform: scale(1.05);
+    }
+
+    .work-tag-corner {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(2, 4, 8, 0.9);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(0, 245, 255, 0.3);
+      padding: 4px 8px;
+      border-radius: 5px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--neon-cyan);
+      letter-spacing: 0.8px;
+    }
+
+    .work-badge-corner {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(0, 0, 0, 0.85);
+      padding: 3px 8px;
+      border-radius: 5px;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+
+    .work-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .work-title {
+      font-family: var(--font-title);
+      font-size: 26px;
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 8px;
+      line-height: 1.15;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .work-summary {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 18px;
+      flex-grow: 1;
+    }
+
+    .work-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 14px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+
+    .work-tools-list {
+      color: var(--neon-emerald);
+      font-weight: 700;
+    }
+
+    .btn-inspect-modal {
+      color: var(--neon-cyan);
+      font-weight: 700;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: gap 0.2s;
+    }
+
+    .btn-inspect-modal:hover {
+      gap: 7px;
+    }
+
+    /* ================= MINIMAL DIRECT GOOGLE DRIVE ACTION BANNER ================= */
+    .drive-banner-compact {
+      background: linear-gradient(135deg, rgba(0, 245, 255, 0.08), rgba(16, 185, 129, 0.08));
+      border: 1.5px solid var(--ruby-bright);
+      border-radius: 16px;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      box-shadow: 0 10px 30px rgba(0, 245, 255, 0.12);
+    }
+
+    .drive-compact-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .drive-icon-cube {
+      width: 42px;
+      height: 42px;
+      background: rgba(0, 245, 255, 0.12);
+      border: 1px solid var(--neon-cyan);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .drive-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 800;
+      color: var(--neon-cyan);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .drive-title {
+      font-family: var(--font-title);
+      font-size: 18px;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    /* ================= SOFTWARE ARSENAL (CLEAN ROLES & UPSCALE FONTS) ================= */
+    .software-grid-seven { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .software-grid-six {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-bottom: 40px;
+      width: 100%;
+    }
+    @media (max-width: 900px) {
+      .software-grid-seven { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .software-grid-six { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .software-grid-seven { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .software-grid-six { grid-template-columns: 1fr; }
+    }
+
+    .software-tile {
+      cursor: pointer;
+      touch-action: manipulation;
+      background: var(--card-glass);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 22px 20px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      transition: all 0.3s;
+    }
+
+    .software-tile:hover {
+      border-color: var(--neon-cyan);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 35px rgba(0, 245, 255, 0.18);
+    }
+
+    .sw-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .sw-badge-top {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-title);
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .sw-badge-pr {
+      background: #00005b;
+      color: #9999ff;
+      border: 1.5px solid #9999ff;
+      box-shadow: 0 0 15px rgba(153, 153, 255, 0.25);
+    }
+
+    .sw-badge-ps {
+      background: #001e36;
+      color: #31a8ff;
+      border: 1.5px solid #31a8ff;
+      box-shadow: 0 0 15px rgba(49, 168, 255, 0.25);
+    }
+
+    .sw-badge-cv {
+      background: #003d5b;
+      color: #00c4cc;
+      border: 1.5px solid #00c4cc;
+      box-shadow: 0 0 15px rgba(0, 196, 204, 0.25);
+    }
+
+    .sw-badge-ae {
+      background: #00005b;
+      color: #d291ff;
+      border: 1.5px solid #d291ff;
+      box-shadow: 0 0 15px rgba(210, 145, 255, 0.25);
+    }
+
+    .sw-badge-cdr {
+      background: #0b3d16;
+      color: #10b981;
+      border: 1.5px solid #10b981;
+      box-shadow: 0 0 15px rgba(16, 185, 129, 0.25);
+    }
+
+    .sw-badge-fg {
+      background: #2c124d;
+      color: #ff7262;
+      border: 1.5px solid #ff7262;
+      box-shadow: 0 0 15px rgba(255, 114, 98, 0.25);
+    }
+
+    .sw-role-badge {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      font-weight: 800;
+      padding: 4px 8px;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      letter-spacing: 0.5px;
+    }
+    .sw-role-badge.lead { color: var(--neon-cyan); border-color: rgba(0, 245, 255, 0.35); }
+    .sw-role-badge.proficient { color: var(--neon-emerald); border-color: rgba(16, 185, 129, 0.35); }
+    .sw-role-badge.secondary { color: var(--text-muted); }
+
+    .sw-name {
+      font-family: var(--font-title);
+      font-size: 26px;
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 6px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .sw-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ================= FOOTER & DIRECT CONTACT WITH UPSCALE KINETIC TITLE ================= */
+    .footer-zone {
+      padding: 70px 0 50px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+      width: 100%;
+    }
+
+    .footer-headline {
+      font-family: var(--font-hero);
+      font-weight: 900;
+      font-size: clamp(44px, 7.5vw, 88px); letter-spacing: 2px;
+      text-transform: uppercase;
+      line-height: 1.02;
+      margin-bottom: 24px;
+      letter-spacing: 1.5px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-contacts-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+
+    .contact-card-link {
+      background: var(--card-glass);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 16px 22px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: all 0.3s;
+      flex-grow: 1;
+      max-width: 400px;
+    }
+
+    .contact-card-link:hover {
+      border-color: var(--neon-cyan);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 245, 255, 0.2);
+    }
+
+    .contact-icon {
+      font-size: 22px;
+    }
+
+    .contact-type-title {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .contact-val-main {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .copyright-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--text-dim);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* Lightbox Modal */
+    .lightbox-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(2, 4, 8, 0.95);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      z-index: 100000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-box-inner {
+      max-width: 1000px;
+      width: 100%;
+      background: #090e1a;
+      border: 1px solid var(--neon-cyan);
+      border-radius: 18px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      box-shadow: 0 25px 80px rgba(0, 245, 255, 0.35);
+      position: relative;
+    }
+    @media (max-width: 800px) {
+      .modal-box-inner { grid-template-columns: 1fr; max-height: 90vh; overflow-y: auto; }
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #fff;
+      font-size: 18px;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    .modal-close-btn:hover {
+      background: var(--neon-rose);
+    }
+
+    .modal-img-stage {
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      max-height: 70vh;
+    }
+
+    .modal-img-stage img {
+      max-width: 100%;
+      max-height: 65vh;
+      object-fit: contain;
+      border-radius: 6px;
+    }
+
+    .modal-content-panel {
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .modal-cat-tag {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--neon-cyan);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .modal-item-title {
+      font-family: var(--font-title);
+      font-size: 22px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .modal-desc-text {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .modal-specs-list {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 10px;
+      padding: 14px;
+      margin-bottom: 20px;
+    }
+
+    .modal-spec-row {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      padding: 5px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .modal-spec-row:last-child { border-bottom: none; }
+    .modal-spec-k { color: var(--text-dim); }
+    .modal-spec-v { color: #fff; font-weight: 700; }
+
+    /* Toast Notification */
+    .toast-pill {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--neon-emerald);
+      color: #020408;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 800;
+      box-shadow: 0 10px 30px rgba(16, 185, 129, 0.5);
+      z-index: 100001;
+      transform: translateY(80px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .toast-pill.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Three.js WebGL 3D Video Editing Universe -->
+  <canvas id="webglCanvas"></canvas>
+
+  <!-- Left-to-Right Studio Scrim Vignette: Protects all text from colliding with 3D elements -->
+  <div class="viewport-readability-scrim"></div>
+
+  <div class="studio-glow glow-cyan"></div>
+  <div class="studio-glow glow-emerald"></div>
+
+  <!-- Studio Custom Cursor (Desktop Only) -->
+  <div class="cursor-core" id="cursorCore"></div>
+  <div class="cursor-reticle" id="cursorReticle"></div>
+  <div class="cursor-label" id="cursorLabel">EXPLORE</div>
+
+  <!-- ================= SLEEK & UNIQUE TOP BAR ================= -->
+  <div class="studio-top-bar">
+    
+    <a href="#hero" class="top-bar-brand">
+      <div class="top-bar-dot"></div>
+      <span class="top-bar-brand-title">ARYA AKBARI</span>
+      <span class="top-bar-status">// AVAILABLE FOR EDITING</span>
+    </a>
+
+    <!-- Center: Clean Dynamic Timecode Scrubber -->
+    <div class="top-bar-scrubber-center">
+      <div class="timecode-display" id="hudTimecode">00:00:00:<span class="frames">00</span></div>
+      <div class="scrubber-track-wrap">
+        <div class="scrubber-fill" id="hudScrubberFill"></div>
+      </div>
+    </div>
+
+    <!-- Right: Tall Font Switcher, Sound Engine & WhatsApp Direct -->
+    <div class="top-bar-right-controls">
+      <button class="font-preset-btn" id="fontPresetBtn" onclick="cycleFontPresets()" title="Click to cycle aesthetic font styles">
+        <span class="font-preset-icon">✦</span>
+        <span id="fontPresetLabel">FONT: TALL CINEMATIC</span>
+      </button>
+
+      <button class="audio-toggle-btn" id="audioToggleBtn" onclick="toggleAmbientSoundtrack()" title="Toggle Mind-Refreshing Looping Piano Music">
+        <div class="audio-eq-bars">
+          <div class="eq-bar"></div>
+          <div class="eq-bar"></div>
+          <div class="eq-bar"></div>
+        </div>
+        <span id="audioBtnText">AMBIENT: OFF</span>
+      </button>
+
+      <a href="https://drive.google.com/drive/folders/15WBlnL5pU_t4xozVGpempa5gQJtUeSWz" 
+         target="_blank" class="top-bar-cta-reels" title="Open Viral Reels Google Drive Vault">
+        🎬 Viral Reels ↗
+      </a>
+      <a href="https://wa.me/918780571306?text=Hi%20Arya,%20I%20reviewed%20your%20Video%20Editing%20Portfolio%20and%20would%20like%20to%20discuss%20a%20project." 
+         target="_blank" class="top-bar-cta-wa">
+        WhatsApp ↗
+      </a>
+    </div>
+
+  </div>
+
+  <div class="content-stage">
+    
+    <!-- Studio Header -->
+    <header class="container studio-header">
+      <a href="#hero" class="brand-cluster">
+        <div class="brand-avatar-box">AA</div>
+        <div>
+          <div class="brand-name-text">ARYA AKBARI</div>
+          <div class="status-sub-text">LEAD VIDEO EDITOR &middot; MOTION ARCHITECT</div>
+        </div>
+      </a>
+
+      <nav class="header-nav">
+        <a href="#showcase" class="nav-link">Video Suite</a>
+        <a href="#works" class="nav-link">Selected 6 Works</a>
+        <a href="#arsenal" class="nav-link">Software Rig</a>
+        <a href="#contact" class="btn-header-cta">Hire Arya</a>
+      </nav>
+    </header>
+
+    <!-- HERO SECTION WITH UPSCALE KINETIC TYPOGRAPHY -->
+    <section class="hero-zone" id="hero">
+      <div class="container hero-split-grid">
+        
+        <!-- LEFT COLUMN: ARYA'S NAME, ROLES, HIGHLIGHTS & METRICS -->
+        <div class="hero-left-col">
+          
+          <div class="hero-badge-pill">
+            <span>● SPECIALIZING IN VIRAL REELS, SPEED RAMPS &amp; 3D MOTION</span>
+          </div>
+
+          <!-- UPSCALED, EXPANSIVE GEOMETRIC NAME: ARYA (Line 1), AKBARI (Line 2) WITH INDIVIDUAL KINETIC LETTER POPS -->
+          <h1 class="hero-arya-name">
+            <div class="name-line-wrap line-arya">
+              <span class="kinetic-letter" style="--i:0">A</span>
+              <span class="kinetic-letter" style="--i:1">R</span>
+              <span class="kinetic-letter" style="--i:2">Y</span>
+              <span class="kinetic-letter" style="--i:3">A</span>
+            </div>
+            <div class="name-line-wrap line-akbari">
+              <span class="kinetic-letter" style="--i:0">A</span>
+              <span class="kinetic-letter" style="--i:1">K</span>
+              <span class="kinetic-letter" style="--i:2">B</span>
+              <span class="kinetic-letter" style="--i:3">A</span>
+              <span class="kinetic-letter" style="--i:4">R</span>
+              <span class="kinetic-letter" style="--i:5">I</span>
+            </div>
+          </h1>
+
+          <!-- Video Editor Sub-Role -->
+          <div class="hero-role-track">
+            <div class="role-badge-main">Video Editor &amp; Motion Graphic Artist</div>
+            <div class="role-tag-secondary">// Premiere Pro &middot; After Effects &middot; CapCut Specialist</div>
+          </div>
+
+          <!-- FROSTED GLASS HERO READABILITY POD -->
+          <div class="hero-readability-pod">
+            <!-- MRBEAST STYLE KINETIC REEL BADGES -->
+            <div class="mrbeast-kinetic-ticker">
+              <div class="mrbeast-pill pill-yellow">⚡ 300% ➔ 50% SPEED RAMP</div>
+              <div class="mrbeast-pill pill-cyan">🎬 60 FPS JUMP CUT TIMING</div>
+              <div class="mrbeast-pill pill-emerald">🔊 BEAT SYNC &amp; SFX DUCKING</div>
+              <div class="mrbeast-pill pill-rose">🎨 CINEMATIC REC.709 GRADE</div>
+            </div>
+
+            <p class="hero-desc-lead">
+              I am <strong>Arya Akbari</strong> (B.C.A Student &middot; Creative Lead). A passionate Video Editor and Graphic Designer skilled in turning raw footage into high-retention YouTube content, viral reels, and digital brand identities with smooth transitions, attractive effects, and professional storytelling.
+            </p>
+          </div>
+
+          <div class="hero-buttons-row">
+            <a href="https://drive.google.com/drive/folders/15WBlnL5pU_t4xozVGpempa5gQJtUeSWz" 
+               target="_blank" class="btn-studio btn-reels-pulse">
+              🔥 WATCH VIRAL REELS VAULT ↗
+            </a>
+            <a href="#showcase" class="btn-studio btn-studio-primary">
+              Explore Portfolio ↓
+            </a>
+            <a href="https://wa.me/918780571306?text=Hi%20Arya,%20I%20reviewed%20your%20Video%20Editing%20Portfolio%20and%20would%20like%20to%20discuss%20a%20project." 
+               target="_blank" class="btn-studio btn-studio-wa">
+              WhatsApp ↗
+            </a>
+          </div>
+
+<!-- Metrics Dock removed per user request for clean editorial elegance -->
+
+        </div>
+
+        <!-- RIGHT COLUMN: ARYA AKBARI CINEMATIC VIDEO SCENE CUTTER POD -->
+        <div class="hero-director-col">
+          <div class="director-pod-card" id="directorPodCard">
+            
+            <!-- Video Editor Sequence Header (Authentic Suite Style) -->
+            <div class="director-hud-bar">
+              <div class="hud-sequence-title">
+                <span class="hud-seq-play-icon">▶</span>
+                <span class="hud-seq-name">SEQUENCE: ARYA_MASTER_CUT.prproj</span>
+              </div>
+              <div class="hud-scene-counter" id="hudSceneCounter">SCENE 01 / 03: RAW B&amp;W</div>
+            </div>
+
+            <!-- Mini Premiere Timeline Track Bar -->
+            <div class="mini-timeline-bar" role="tablist">
+              <button type="button" class="timeline-clip clip-1 active" id="clipTab1" onclick="selectScene(0)" title="Default: Original Studio Black & White Portrait">
+                <span class="clip-badge">01</span>
+                <span class="clip-label">RAW B&amp;W</span>
+              </button>
+              <button type="button" class="timeline-clip clip-2" id="clipTab2" onclick="selectScene(1)" title="Retouched Natural Human Skin Color Grade">
+                <span class="clip-badge">02</span>
+                <span class="clip-label">NATURAL SKIN</span>
+              </button>
+              <button type="button" class="timeline-clip clip-3" id="clipTab3" onclick="selectScene(2)" title="Cinematic Director Thinker Pose">
+                <span class="clip-badge">03</span>
+                <span class="clip-label">POSE 02</span>
+              </button>
+              <div class="timeline-scrub-playhead" id="miniTimelinePlayhead"></div>
+            </div>
+
+            <!-- Video Scene Frame with Direct Click-to-Grade Support --><!-- Video Scene Frame with Anamorphic Whip & Light Leak Overlays -->
+            <div class="director-photo-frame" id="directorPhotoFrame">
+              <img src="portfolio_assets/arya_scene_1_bw.jpg" id="aryaPortraitImg" alt="Arya Akbari - Lead Video Editor &amp; Motion Architect" class="director-main-img">
+              
+              <!-- Anamorphic Whip & Light Leak Transition Overlays -->
+              <div class="whip-transition-layer" id="whipTransitionLayer">
+                <div class="whip-light-streak"></div>
+                <div class="whip-chromatic-rgb"></div>
+              </div>
+
+              <!-- Dual Expertise Floating Badges (Clean, no fake camera overlays) -->
+              <div class="floating-badge badge-video">
+                <span class="fb-icon">🎬</span>
+                <div class="fb-text">
+                  <strong>VIDEO EDITOR</strong>
+                  <small>Premiere &middot; After Effects &middot; CapCut</small>
+                </div>
+              </div>
+
+              <div class="floating-badge badge-design">
+                <span class="fb-icon">🎨</span>
+                <div class="fb-text">
+                  <strong>GRAPHIC DESIGNER</strong>
+                  <small>Photoshop &middot; Illustrator &middot; CorelDRAW</small>
+                </div>
+              </div>
+            </div>
+
+            <!-- Interactive Video Cutter Action Controls (YouTube & Cinema Scene Transitions) -->
+            <div class="director-controls-strip">
+              <div class="cut-actions-wrap">
+                <button type="button" class="btn-cut-action btn-jump-cut" onclick="triggerSceneCut('jump')" title="Trigger Instant Jump Cut Transition">
+                  <span class="cut-icon">✂</span>
+                  <span>JUMP CUT</span>
+                </button>
+                <button type="button" class="btn-cut-action btn-whip-cut" onclick="triggerSceneCut('whip')" title="Trigger High-Velocity Whip Pan Transition">
+                  <span class="cut-icon">⚡</span>
+                  <span>WHIP TRANSITION</span>
+                </button>
+                <a href="https://drive.google.com/drive/folders/15WBlnL5pU_t4xozVGpempa5gQJtUeSWz" target="_blank" class="btn-cut-action btn-pod-reels" title="Open Edited Reels on Google Drive">
+                  <span>📱 REELS ↗</span>
+                </a>
+              </div>
+
+              <div class="pod-timecode-box">
+                <span class="timecode-label">TIMECODE</span>
+                <span class="timecode-val" id="podTimecode">00:01:24:18</span>
+              </div>
+            </div>
+
+            <!-- Scene Caption Footbar -->
+            <div class="director-signature-caption" id="sceneCaptionText">
+              <span>ACTIVE SCENE:</span> <strong>01 &mdash; STUDIO RAW B&amp;W PORTRAIT (DEFAULT)</strong>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= SECTION 1: COLOR GRADATION & MOTION (NO "ENGINEERING" WORD) ================= -->
+    
+    <!-- CINEMATIC SCENE TRANSITION DIVIDER -->
+    <div class="scene-transition-divider">
+      <div class="divider-track-line">
+        <div class="divider-playhead-gem"></div>
+      </div>
+      <div class="divider-label">// SCENE CUT // TIMELINE TRACK TRANSITION</div>
+    </div>
+
+    <section id="showcase">
+      <div class="container">
+        
+        <div class="section-tagline">DYNAMIC COLOR &amp; MOTION</div>
+        <div class="scroll-slide-match">
+          <h2 class="scroll-slide-title">
+            <span class="kinetic-word">Color</span>
+            <span class="kinetic-word">Gradation</span>
+            <span class="kinetic-word">&amp;</span>
+            <span class="kinetic-word">Motion</span>
+            <span class="kinetic-word">Cuts</span>
+          </h2>
+        </div>
+        <p class="section-lead-text">
+          Interactive hands-on demonstration of Arya's video editing pipeline. Drag the slider to compare Flat Raw S-Log vs Cinematic Rec.709 Nature Landscape Grade, and click the soundboard triggers to audition sound design assets.
+        </p>
+
+        <div class="video-suite-container">
+          
+          <!-- Panel 1: Interactive Before & After Color Grading Comparison (CINEMATIC SCENERY) -->
+          <div class="grading-box-panel">
+            <div class="panel-header-row">
+              <span class="panel-badge">INTERACTIVE COMPARE</span>
+              <h3 class="panel-title">Cinematic Color Gradation</h3>
+            </div>
+
+            <!-- Split-Screen Compare Stage (Featuring cinematic_scenery.jpg) -->
+            <div class="split-compare-stage" id="compareStage">
+              <!-- Graded Image (Base: Breathtaking Golden Hour Cinematic Landscape) -->
+              <img src="portfolio_assets/cinematic_scenery.jpg" alt="Graded Landscape Footage" class="compare-img-graded">
+              
+              <!-- Raw Flat Log Image (Clipped) -->
+              <div class="compare-img-raw-wrap" id="compareRawWrap">
+                <img src="portfolio_assets/cinematic_scenery.jpg" alt="Raw Flat Log Footage" class="compare-img-raw">
+              </div>
+
+              <!-- Split Handle Line -->
+              <div class="split-divider-line" id="splitDivider">
+                <div class="split-handle-knob">⇄</div>
+              </div>
+
+              <div class="compare-tag-left">RAW FLAT S-LOG3</div>
+              <div class="compare-tag-right">REC.709 NATURE CINEMA</div>
+            </div>
+
+            <!-- Draggable Range Slider -->
+            <input type="range" min="0" max="100" value="50" class="compare-range-slider" id="compareSlider" oninput="updateSplitCompare(this.value)">
+
+            <p class="compare-caption-text">
+              Drag slider to inspect natural dynamic range, mountain ridge separation, atmospheric volumetric mist, and cinematic golden hour color grading.
+            </p>
+          </div>
+
+          <!-- Panel 2: Interactive SFX Soundboard & Speed Ramp Simulator -->
+          <div class="motion-sound-panel">
+            <div>
+              <div class="panel-header-row">
+                <span class="panel-badge" style="color:var(--neon-emerald); border-color:rgba(16,185,129,0.3);">AUDIO SFX ENGINE</span>
+                <h3 class="panel-title">Motion Dynamics &amp; Sound FX</h3>
+              </div>
+              <p class="sfx-soundboard-desc">
+                Click any sound trigger below to hear live synthesized video editing audio effects:
+              </p>
+
+              <!-- 4 Interactive Sound Triggers -->
+              <div class="sfx-buttons-grid">
+                <button class="btn-sfx-trigger" onclick="playWhooshCutSFX()">
+                  <span class="ico">💨</span>
+                  <div>
+                    <div>Cinematic Whoosh</div>
+                    <small style="color:var(--text-dim);">Fast Whip-Pan Cut</small>
+                  </div>
+                </button>
+
+                <button class="btn-sfx-trigger" onclick="playSubImpactSFX()">
+                  <span class="ico">💥</span>
+                  <div>
+                    <div>Sub-Bass Impact</div>
+                    <small style="color:var(--text-dim);">Beat Drop Boom</small>
+                  </div>
+                </button>
+
+                <button class="btn-sfx-trigger" onclick="playTensionRiserSFX()">
+                  <span class="ico">📈</span>
+                  <div>
+                    <div>Tension Riser</div>
+                    <small style="color:var(--text-dim);">Hook Buildup Sweep</small>
+                  </div>
+                </button>
+
+                <button class="btn-sfx-trigger" onclick="playGlitchChirpSFX()">
+                  <span class="ico">⚡</span>
+                  <div>
+                    <div>Glitch Cyber Snap</div>
+                    <small style="color:var(--text-dim);">Optical Transition</small>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            <!-- Interactive Speed Ramp Velocity Graph with Live Presets -->
+            <div class="speed-ramp-visual-box">
+              <div class="speed-ramp-header">
+                <span>VELOCITY TIME-REMAPPING</span>
+                <span class="speed-ramp-tag" id="speedRampTag">300% ➔ 50% BEZIER (60 FPS)</span>
+              </div>
+              <div class="speed-curve-track">
+                <svg class="speed-curve-svg" viewBox="0 0 300 48" preserveAspectRatio="none">
+                  <path id="speedRampCurvePath" d="M0,8 C80,8 110,40 150,40 C190,40 220,12 300,12" fill="none" stroke="#00f5ff" stroke-width="2.5" />
+                  <circle id="speedRampBall" cx="150" cy="40" r="5" fill="#10b981" filter="drop-shadow(0 0 6px #10b981)" />
+                </svg>
+              </div>
+              <div class="speed-presets-row">
+                <button class="btn-speed-preset active" onclick="setSpeedRamp(0, '300% ➔ 50% BEZIER (60 FPS)', 'M0,8 C80,8 110,40 150,40 C190,40 220,12 300,12', this)">⚡ RETENTION RAMP</button>
+                <button class="btn-speed-preset" onclick="setSpeedRamp(1, '0.25x ULTRA SLOW-MO (120 FPS)', 'M0,40 C60,40 120,40 180,40 C240,40 280,40 300,40', this)">🐢 0.25x SLOW-MO</button>
+                <button class="btn-speed-preset" onclick="setSpeedRamp(2, '8.0x SPEED WHIP CUT (240 FPS)', 'M0,6 C40,6 80,6 120,6 C160,40 240,6 300,6', this)">🚀 8x WHIP PAN</button>
+                <button class="btn-speed-preset" onclick="setSpeedRamp(3, '1.0x CINEMATIC REALTIME (24 FPS)', 'M0,24 C80,24 140,24 200,24 C250,24 280,24 300,24', this)">🎬 1x REALTIME</button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    
+    <!-- CINEMATIC SCENE TRANSITION DIVIDER -->
+    <div class="scene-transition-divider">
+      <div class="divider-track-line">
+        <div class="divider-playhead-gem"></div>
+      </div>
+      <div class="divider-label">// SCENE CUT // TIMELINE TRACK TRANSITION</div>
+    </div>
+
+    
+    <!-- ================= DEDICATED VIRAL REELS & SHORT-FORM VAULT BANNER ================= -->
+    <div class="container" style="margin-top: 40px; margin-bottom: 20px;">
+      <div class="reels-vault-banner-card">
+        <div class="reels-card-left">
+          <div class="reels-tag-header">
+            <span class="pulse-red-dot"></span>
+            <span>GOOGLE DRIVE VAULT // VERTICAL SHORT-FORM</span>
+          </div>
+          <h3 class="reels-banner-title">VIRAL REELS &amp; RETENTION SHORT-FORM EDITS</h3>
+          <p class="reels-banner-desc">
+            Direct access to Arya's edited vertical reels (9:16) featuring velocity speed ramps, dynamic kinetic auto-captions, sound design ducking, and high-retention storytelling hooks.
+          </p>
+          <div class="reels-metrics-chips">
+            <span class="chip-item">⚡ 300% ➔ 50% Speed Ramping</span>
+            <span class="chip-item">📱 9:16 Vertical Master</span>
+            <span class="chip-item">🎬 CapCut &amp; Premiere Pro</span>
+          </div>
+        </div>
+        <div class="reels-card-right">
+          <a href="https://drive.google.com/drive/folders/15WBlnL5pU_t4xozVGpempa5gQJtUeSWz" 
+             target="_blank" class="btn-open-reels-large">
+            <span>🎬 OPEN GOOGLE DRIVE REELS ↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= SECTION 2: FEATURED WORKS (UPSCALE KINETIC TITLE) ================= -->
+    
+    <!-- CINEMATIC SCENE TRANSITION DIVIDER -->
+    <div class="scene-transition-divider">
+      <div class="divider-track-line">
+        <div class="divider-playhead-gem"></div>
+      </div>
+      <div class="divider-label">// SCENE CUT // TIMELINE TRACK TRANSITION</div>
+    </div>
+
+    <section id="works">
+      <div class="container">
+        
+        <div class="section-tagline">CURATED ARCHIVE // 6 SELECTED PIECES</div>
+        <div class="scroll-slide-match">
+          <h2 class="scroll-slide-title">
+            <span class="kinetic-word">Featured</span>
+            <span class="kinetic-word">Works</span>
+            <span class="kinetic-word">&amp;</span>
+            <span class="kinetic-word">Visual</span>
+            <span class="kinetic-word">Showcase</span>
+          </h2>
+        </div>
+        <p class="section-lead-text">
+          Selected deliverables representing complete brand manuals, luxury packaging, editorial brochures, sports entertainment, and commercial advertising.
+        </p>
+
+                <!-- 6 Curated Cards Grid -->
+        <div class="works-grid-six" id="worksGrid">
+          
+          <!-- Card 1: AR Panther Corporate Brand Manual -->
+          <div class="work-card" onclick="openModal('panther')">
+            <div class="work-thumb-wrap">
+              <img src="portfolio_assets/my_company_AR Panther.png" alt="AR Panther Brand Identity" class="work-thumb-img">
+              <div class="work-tag-corner">BRAND IDENTITY</div>
+              <div class="work-badge-corner">18 PAGES MANUAL</div>
+              <div class="work-thumb-overlay">
+                <span class="work-thumb-hover-btn">🔍 CLICK TO INSPECT</span>
+              </div>
+            </div>
+            <div class="work-body">
+              <h3 class="work-title">AR Panther Corporate Brand Manual</h3>
+              <p class="work-summary">
+                Comprehensive 18-page vector brand manual defining logo geometry, typography scale, negative space grid, corporate color codes, and executive stationery suite.
+              </p>
+              <div class="work-meta-row">
+                <span class="work-tools-list">Photoshop &middot; Illustrator</span>
+                <a href="https://drive.google.com/drive/folders/1jCblb14ge1HO2TQpQ8NhFiyJIKJsuHWm" 
+                   target="_blank" class="btn-inspect-modal" onclick="event.stopPropagation();">
+                  Inspect Work ↗
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Three Fold Architecture Brochure -->
+          <div class="work-card" onclick="openModal('three_fold')">
+            <div class="work-thumb-wrap">
+              <img src="portfolio_assets/3_fold_3 fold 1.png" alt="Three Fold Brochure" class="work-thumb-img">
+              <div class="work-tag-corner">EDITORIAL PRINT</div>
+              <div class="work-badge-corner">3-FOLD BROCHURE</div>
+              <div class="work-thumb-overlay">
+                <span class="work-thumb-hover-btn">🔍 CLICK TO INSPECT</span>
+              </div>
+            </div>
+            <div class="work-body">
+              <h3 class="work-title">Three Fold</h3>
+              <p class="work-summary">
+                Scandinavian furniture &amp; architecture editorial spread featuring 6-column precision grid, CMYK press-ready calibration, and high-contrast interior photography.
+              </p>
+              <div class="work-meta-row">
+                <span class="work-tools-list">CorelDRAW &middot; InDesign</span>
+                <a href="https://drive.google.com/drive/folders/1eKR-tx2HXigPajIpDJH76CwvoobETsfW" 
+                   target="_blank" class="btn-inspect-modal" onclick="event.stopPropagation();">
+                  Inspect Work ↗
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3: Two Fold Corporate Brochure -->
+          <div class="work-card" onclick="openModal('two_fold')">
+            <div class="work-thumb-wrap">
+              <img src="portfolio_assets/2_fold_1.png" alt="Two Fold Brochure" class="work-thumb-img">
+              <div class="work-tag-corner">CORPORATE PRINT</div>
+              <div class="work-badge-corner">2-FOLD BROCHURE</div>
+              <div class="work-thumb-overlay">
+                <span class="work-thumb-hover-btn">🔍 CLICK TO INSPECT</span>
+              </div>
+            </div>
+            <div class="work-body">
+              <h3 class="work-title">Two Fold</h3>
+              <p class="work-summary">
+                Executive double-panel corporate brochure designed with balanced grid hierarchy, photography framing, typography margins, and full print-ready CMYK bleeds.
+              </p>
+              <div class="work-meta-row">
+                <span class="work-tools-list">CorelDRAW &middot; Photoshop</span>
+                <a href="https://drive.google.com/drive/folders/1o4s-3BQ2Sm23b6jSeCF6CGNJX40WQN48" 
+                   target="_blank" class="btn-inspect-modal" onclick="event.stopPropagation();">
+                  Inspect Work ↗
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4: Commercial Marketing Flyer -->
+          <div class="work-card" onclick="openModal('flyer')">
+            <div class="work-thumb-wrap">
+              <img src="portfolio_assets/flyer_hd.png" alt="Commercial Marketing Flyer" class="work-thumb-img">
+              <div class="work-tag-corner">MARKETING &amp; PROMO</div>
+              <div class="work-badge-corner">COMMERCIAL FLYER</div>
+              <div class="work-thumb-overlay">
+                <span class="work-thumb-hover-btn">🔍 CLICK TO INSPECT</span>
+              </div>
+            </div>
+            <div class="work-body">
+              <h3 class="work-title">Flyer</h3>
+              <p class="work-summary">
+                High-conversion commercial marketing flyer with crisp visual focal points, dynamic offer highlights, modern geometric framing, and clean call-to-actions.
+              </p>
+              <div class="work-meta-row">
+                <span class="work-tools-list">Photoshop &middot; Canva Pro</span>
+                <a href="https://drive.google.com/drive/folders/14f4MHWXs8f-4r0E-KXIt_v1y96An-6ak" 
+                   target="_blank" class="btn-inspect-modal" onclick="event.stopPropagation();">
+                  Inspect Work ↗
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 5: Poster Design (Sports Tournament Key Art) -->
+          <div class="work-card" onclick="openModal('poster')">
+            <div class="work-thumb-wrap">
+              <img src="portfolio_assets/poster_cricket_hd.png" alt="Poster Design Key Art" class="work-thumb-img">
+              <div class="work-tag-corner">SPORTS &amp; KEY ART</div>
+              <div class="work-badge-corner">POSTER DESIGN</div>
+              <div class="work-thumb-overlay">
+                <span class="work-thumb-hover-btn">🔍 CLICK TO INSPECT</span>
+              </div>
+            </div>
+            <div class="work-body">
+              <h3 class="work-title">Poster Design</h3>
+              <p class="work-summary">
+                Dynamic tournament key art with stadium floodlights, particle smoke simulation, high-contrast player lighting, and high-energy kinetic typography.
+              </p>
+              <div class="work-meta-row">
+                <span class="work-tools-list">Photoshop &middot; After Effects</span>
+                <a href="https://drive.google.com/drive/folders/1AEswWmQL12yDfZirVInuDrghpxcotcp9" 
+                   target="_blank" class="btn-inspect-modal" onclick="event.stopPropagation();">
+                  Inspect Work ↗
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 6: Logo Design (Vector Identity System) -->
+          <div class="work-card" onclick="openModal('logo')">
+            <div class="work-thumb-wrap">
+              <img src="portfolio_assets/logo_14_hd.png" alt="Vector Logo Design" class="work-thumb-img">
+              <div class="work-tag-corner">BRAND IDENTITY</div>
+              <div class="work-badge-corner">LOGO DESIGN</div>
+              <div class="work-thumb-overlay">
+                <span class="work-thumb-hover-btn">🔍 CLICK TO INSPECT</span>
+              </div>
+            </div>
+            <div class="work-body">
+              <h3 class="work-title">Logo Design</h3>
+              <p class="work-summary">
+                Precision vector brand mark constructed on golden ratio circular grids, delivering high memorability, balanced negative space, and multi-format versatility.
+              </p>
+              <div class="work-meta-row">
+                <span class="work-tools-list">Illustrator &middot; CorelDRAW</span>
+                <a href="https://drive.google.com/drive/folders/1sHbTp1EjZy6ejEjXrzKOBofxKkuKG1BH" 
+                   target="_blank" class="btn-inspect-modal" onclick="event.stopPropagation();">
+                  Inspect Work ↗
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECTION 3: SOFTWARE ARSENAL (UPSCALE KINETIC TITLE) ================= -->
+    
+    <!-- CINEMATIC SCENE TRANSITION DIVIDER -->
+    <div class="scene-transition-divider">
+      <div class="divider-track-line">
+        <div class="divider-playhead-gem"></div>
+      </div>
+      <div class="divider-label">// SCENE CUT // TIMELINE TRACK TRANSITION</div>
+    </div>
+
+    <section id="arsenal">
+      <div class="container">
+        
+        <div class="section-tagline">PRODUCTION RIG &amp; TOOLKIT</div>
+        <div class="scroll-slide-match">
+          <h2 class="scroll-slide-title">
+            <span class="kinetic-word">Software</span>
+            <span class="kinetic-word">Rig</span>
+            <span class="kinetic-word">&amp;</span>
+            <span class="kinetic-word">Creative</span>
+            <span class="kinetic-word">Arsenal</span>
+          </h2>
+        </div>
+        <p class="section-lead-text">
+          Transparent breakdown of core production software across video editing, raster graphic design, fast social media turnarounds, and vector layouts.
+        </p>
+
+                <div class="software-grid-seven">
+          
+          <!-- 1. Adobe Premiere Pro -->
+          <div class="software-tile sw-pr">
+            <div class="sw-header-row">
+              <div class="sw-logo-box">
+                <img src="portfolio_assets/logos/premiere.svg" alt="Adobe Premiere Pro Official Logo" class="sw-logo-img">
+              </div>
+              <span class="sw-role-badge lead">CORE VIDEO EDITOR</span>
+            </div>
+            <div class="sw-name">Adobe Premiere Pro</div>
+            <p class="sw-desc">
+              Velocity speed ramping, multi-cam timeline editing, audio ducking, Lumetri color grading, and viral 9:16 vertical short-form retention optimization.
+            </p>
+          </div>
+
+          <!-- 2. Adobe After Effects -->
+          <div class="software-tile sw-ae">
+            <div class="sw-header-row">
+              <div class="sw-logo-box">
+                <img src="portfolio_assets/logos/aftereffects.svg" alt="Adobe After Effects Official Logo" class="sw-logo-img">
+              </div>
+              <span class="sw-role-badge lead">MOTION VFX &amp; TITLES</span>
+            </div>
+            <div class="sw-name">Adobe After Effects</div>
+            <p class="sw-desc">
+              Dynamic kinetic typography, 3D camera tracking, lower thirds, seamless whip-pan transitions, glowing neon VFX, and sound-synced motion graphics.
+            </p>
+          </div>
+
+          <!-- 3. CapCut Pro (7th Essential Video Editing Tool) -->
+          <div class="software-tile sw-capcut">
+            <div class="sw-header-row">
+              <div class="sw-logo-box">
+                <img src="portfolio_assets/logos/capcut.svg" alt="CapCut Pro Official Logo" class="sw-logo-img">
+              </div>
+              <span class="sw-role-badge lead">VIRAL SHORTS &amp; REELS</span>
+            </div>
+            <div class="sw-name">CapCut Pro</div>
+            <p class="sw-desc">
+              High-velocity 9:16 vertical short-form editing, trending kinetic auto-captions, velocity optical flow curves, dynamic sound sync, and viral retention hooks for YouTube Shorts, Reels &amp; TikTok.
+            </p>
+          </div>
+
+          <!-- 4. Adobe Photoshop -->
+          <div class="software-tile sw-ps">
+            <div class="sw-header-row">
+              <div class="sw-logo-box">
+                <img src="portfolio_assets/logos/photoshop.svg" alt="Adobe Photoshop Official Logo" class="sw-logo-img">
+              </div>
+              <span class="sw-role-badge">THUMBNAILS &amp; POSTERS</span>
+            </div>
+            <div class="sw-name">Adobe Photoshop</div>
+            <p class="sw-desc">
+              High-CTR YouTube thumbnail design, advanced photo manipulation, commercial poster composition, lighting matching, and pixel-perfect retouching.
+            </p>
+          </div>
+
+          <!-- 5. Canva Pro -->
+          <div class="software-tile sw-canva">
+            <div class="sw-header-row">
+              <div class="sw-logo-box">
+                <img src="portfolio_assets/logos/canva.svg" alt="Canva Pro Official Logo" class="sw-logo-img">
+              </div>
+              <span class="sw-role-badge">FAST SOCIAL GRAPHICS</span>
+            </div>
+            <div class="sw-name">Canva Pro</div>
+            <p class="sw-desc">
+              High-velocity social media turnarounds, multi-format Instagram carousels, rapid template adaptation, and branded promotional graphics.
+            </p>
+          </div>
+
+          <!-- 6. CorelDRAW -->
+          <div class="software-tile sw-cdr">
+            <div class="sw-header-row">
+              <div class="sw-logo-box">
+                <img src="portfolio_assets/logos/coreldraw.svg" alt="CorelDRAW Official Logo" class="sw-logo-img">
+              </div>
+              <span class="sw-role-badge">VECTOR &amp; PRINT PACKAGING</span>
+            </div>
+            <div class="sw-name">CorelDRAW</div>
+            <p class="sw-desc">
+              Commercial multi-panel brochures (2-fold &amp; 3-fold), vector marketing flyers, packaging die-lines, large-format hoardings, and press-ready CMYK separations.
+            </p>
+          </div>
+
+          <!-- 7. Figma -->
+          <div class="software-tile sw-figma">
+            <div class="sw-header-row">
+              <div class="sw-logo-box">
+                <img src="portfolio_assets/logos/figma.svg" alt="Figma Official Logo" class="sw-logo-img">
+              </div>
+              <span class="sw-role-badge">UI &amp; STORYBOARDS</span>
+            </div>
+            <div class="sw-name">Figma</div>
+            <p class="sw-desc">
+              Video storyboard sequence layouts, YouTube thumbnail A/B testing grids, vector icon design, moodboards, and responsive design systems.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FOOTER & DIRECT CONTACT WITH UPSCALE KINETIC TITLE ================= -->
+    <footer class="footer-zone" id="contact">
+      <div class="container">
+        
+        <div class="section-tagline">READY FOR COLLABORATION</div>
+        <div class="scroll-slide-match">
+          <h2 class="footer-headline">
+            <span class="kinetic-word">LET'S</span>
+            <span class="kinetic-word">CREATE</span>
+            <span class="kinetic-word">HIGH-IMPACT</span>
+            <span class="kinetic-word">MOTION</span>
+          </h2>
+        </div>
+        <p class="section-lead-text">
+          Available for freelance video editing contracts, YouTube channel motion branding, short-form viral reels, and graphic design assignments.
+        </p>
+
+        <div class="footer-contacts-row">
+          
+          <a href="https://wa.me/918780571306?text=Hi%20Arya,%20I%20reviewed%20your%20Video%20Editing%20Portfolio%20and%20would%20like%20to%20discuss%20a%20project." 
+             target="_blank" class="contact-card-link">
+            <div class="contact-icon" style="color:#25d366;">💬</div>
+            <div>
+              <div class="contact-type-title">WhatsApp Direct</div>
+              <div class="contact-val-main">+91 87805 71306</div>
+            </div>
+          </a>
+
+          <a href="tel:+918780571306" class="contact-card-link">
+            <div class="contact-icon" style="color:var(--neon-cyan);">📞</div>
+            <div>
+              <div class="contact-type-title">Direct Calling Line</div>
+              <div class="contact-val-main">+91 87805 71306</div>
+            </div>
+          </a>
+
+          <a href="mailto:aryaakbari2008@gmail.com" class="contact-card-link" id="copyMailBtn">
+            <div class="contact-icon" style="color:var(--neon-emerald);">✉️</div>
+            <div>
+              <div class="contact-type-title">Email Inquiry</div>
+              <div class="contact-val-main">aryaakbari2008@gmail.com</div>
+            </div>
+          </a>
+
+        </div>
+
+        <div class="copyright-bar">
+          <div>&copy; 2026 Arya Akbari &middot; Lead Video Editor &amp; Motion Artist</div>
+          <div>Master Timeline: 4K60 UHD &middot; Rec.709 &middot; Color Graded</div>
+        </div>
+
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- LIGHTBOX INSPECT MODAL -->
+  <div class="lightbox-modal" id="lightboxModal">
+    <div class="modal-box-inner">
+      <button class="modal-close-btn" onclick="closeModal()">✕</button>
+      
+      <div class="modal-img-stage">
+        <img id="modalImg" src="" alt="Work Inspection">
+      </div>
+
+      <!-- Navigation Buttons for Quick Cycle -->
+      <button class="modal-nav-btn prev" id="modalPrevBtn" onclick="navModal(-1)" title="Previous Project (Left Arrow)">◀</button>
+      <button class="modal-nav-btn next" id="modalNextBtn" onclick="navModal(1)" title="Next Project (Right Arrow)">▶</button>
+
+      <div class="modal-content-panel">
+        <div>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+            <div class="modal-cat-tag" id="modalCategory" style="margin-bottom: 0;">CATEGORY</div>
+            <div class="modal-counter-badge" id="modalCounterBadge">01 / 06</div>
+          </div>
+          <h3 class="modal-item-title" id="modalTitle">Project Title</h3>
+          <p class="modal-desc-text" id="modalDesc">Detailed description of the design asset.</p>
+          
+          <div class="modal-specs-list">
+            <div class="modal-spec-row">
+              <span class="modal-spec-k">Master Software</span>
+              <span class="modal-spec-v" id="modalTool">Adobe CC</span>
+            </div>
+            <div class="modal-spec-row">
+              <span class="modal-spec-k">Color Profile</span>
+              <span class="modal-spec-v" id="modalColor">Rec.709 / CMYK</span>
+            </div>
+            <div class="modal-spec-row">
+              <span class="modal-spec-k">Resolution</span>
+              <span class="modal-spec-v" id="modalResolution">4K Master</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <!-- Direct Google Drive Link for this project (can be changed in workDetails in JS) -->
+          <a href="https://drive.google.com/drive/folders/1UgYhgiJL6QBd4TI8hUtI8FC8obObNo-6?usp=sharing" 
+             target="_blank" id="modalDriveLink" class="btn-studio btn-studio-primary" style="width:100%; justify-content:center;">
+            View Source in Google Drive ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-pill" id="toastPill">Email Copied to Clipboard!</div>
+
+  <!-- ================= THREE.JS REAL 3D VIDEO EDITING SCENE, SOUND ENGINE & UI SCRIPTS ================= -->
+  <script>
+// ================= REAL-TIME THREE.JS WEBGL 3D VIDEO EDITING SCENE =================
+    let scene, camera, renderer;
+    let timelineGroup, keyframes = [], viewportFrames = [], playheadLine, floatingParticles;
+    const canvas = document.getElementById('webglCanvas');
+
+    function init3DVideoScene() {
+      if (typeof THREE === 'undefined') return;
+
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+      
+      const isMobile = window.innerWidth < 768;
+      camera.position.set(0, 0, isMobile ? 38 : 32);
+
+      renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+      timelineGroup = new THREE.Group();
+      scene.add(timelineGroup);
+
+      timelineGroup.position.set(isMobile ? 6 : 13, -1, isMobile ? -8 : -4);
+      timelineGroup.rotation.y = -0.42;
+      timelineGroup.rotation.x = 0.12;
+
+      // 1. Parallel 3D Video & Audio Timeline Tracks (V3, V2, V1, A1)
+      const trackColors = [0x00f5ff, 0x10b981, 0x00f5ff, 0xf59e0b];
+      const trackHeights = [4.5, 1.5, -1.5, -4.5];
+
+      trackHeights.forEach((y, idx) => {
+        const points = [];
+        for (let x = -8; x <= 22; x += 1) {
+          points.push(new THREE.Vector3(x, y, (Math.sin(x * 0.25) * 1.4)));
+        }
+        const trackGeo = new THREE.BufferGeometry().setFromPoints(points);
+        const trackMat = new THREE.LineBasicMaterial({
+          color: trackColors[idx % trackColors.length],
+          transparent: true,
+          opacity: 0.3
+        });
+        const trackLine = new THREE.Line(trackGeo, trackMat);
+        timelineGroup.add(trackLine);
+      });
+
+      // 2. 3D Floating Keyframe Diamonds (Pulsing along right 3D tracks)
+      const diamondGeo = new THREE.OctahedronGeometry(0.72, 0);
+      const diamondMatCyan = new THREE.MeshBasicMaterial({
+        color: 0x00f5ff,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.75
+      });
+      const diamondMatEmerald = new THREE.MeshBasicMaterial({
+        color: 0x10b981,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.8
+      });
+
+      const keyframePositions = [
+        { x: -4, y: 4.5, z: 0, mat: diamondMatCyan },
+        { x: 3, y: 4.5, z: 0.8, mat: diamondMatEmerald },
+        { x: 10, y: 4.5, z: -0.5, mat: diamondMatCyan },
+        { x: 18, y: 4.5, z: 1.0, mat: diamondMatEmerald },
+
+        { x: -2, y: 1.5, z: -0.4, mat: diamondMatEmerald },
+        { x: 6, y: 1.5, z: 0.5, mat: diamondMatCyan },
+        { x: 14, y: 1.5, z: -0.6, mat: diamondMatEmerald },
+
+        { x: -5, y: -1.5, z: 0.4, mat: diamondMatCyan },
+        { x: 2, y: -1.5, z: 0, mat: diamondMatEmerald },
+        { x: 11, y: -1.5, z: -0.7, mat: diamondMatCyan },
+
+        { x: 0, y: -4.5, z: -0.3, mat: diamondMatEmerald },
+        { x: 9, y: -4.5, z: 0.6, mat: diamondMatCyan }
+      ];
+
+      keyframePositions.forEach(pos => {
+        const mesh = new THREE.Mesh(diamondGeo, pos.mat);
+        mesh.position.set(pos.x, pos.y, pos.z);
+        mesh.rotation.z = Math.PI / 4;
+        timelineGroup.add(mesh);
+        keyframes.push(mesh);
+      });
+
+      // 3. 3D Holographic Viewport Wireframes
+      const framePoints = [
+        new THREE.Vector3(-7, -4, 0),
+        new THREE.Vector3(7, -4, 0),
+        new THREE.Vector3(7, 4, 0),
+        new THREE.Vector3(-7, 4, 0),
+        new THREE.Vector3(-7, -4, 0)
+      ];
+      const frameGeo = new THREE.BufferGeometry().setFromPoints(framePoints);
+      const frameMat = new THREE.LineBasicMaterial({
+        color: 0x00f5ff,
+        transparent: true,
+        opacity: 0.28
+      });
+
+      const frameMesh1 = new THREE.Line(frameGeo, frameMat);
+      frameMesh1.position.set(5, 0, -3);
+      timelineGroup.add(frameMesh1);
+      viewportFrames.push(frameMesh1);
+
+      // 4. Sweeping 3D Laser Playhead Line
+      const playheadPoints = [
+        new THREE.Vector3(0, 8, 2),
+        new THREE.Vector3(0, -8, -2)
+      ];
+      const playheadGeo = new THREE.BufferGeometry().setFromPoints(playheadPoints);
+      const playheadMat = new THREE.LineBasicMaterial({
+        color: 0xff0055,
+        transparent: true,
+        opacity: 0.85,
+        linewidth: 2
+      });
+      playheadLine = new THREE.Line(playheadGeo, playheadMat);
+      timelineGroup.add(playheadLine);
+
+      // 5. Floating Audio Particles
+      const partGeo = new THREE.BufferGeometry();
+      const count = 240;
+      const positions = new Float32Array(count * 3);
+      for (let i = 0; i < count * 3; i += 3) {
+        positions[i] = (Math.random() - 0.2) * 45;
+        positions[i + 1] = (Math.random() - 0.5) * 40;
+        positions[i + 2] = (Math.random() - 0.5) * 35;
+      }
+      partGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      const partMat = new THREE.PointsMaterial({
+        size: 0.2,
+        color: 0x00f5ff,
+        transparent: true,
+        opacity: 0.45
+      });
+      floatingParticles = new THREE.Points(partGeo, partMat);
+      scene.add(floatingParticles);
+
+      animate3DScene();
+    }
+
+    let mouseX = 0, mouseY = 0;
+    window.addEventListener('mousemove', (e) => {
+      mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+      mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+    });
+
+    let scrollY = 0;
+    window.addEventListener('scroll', () => {
+      scrollY = window.scrollY;
+      updateLiveScrubberHUD();
+      modulateAudioWithScroll();
+    });
+
+    let playheadTime = 0;
+
+    function animate3DScene() {
+      requestAnimationFrame(animate3DScene);
+
+      playheadTime += 0.02;
+
+      keyframes.forEach((kf, idx) => {
+        kf.rotation.x += 0.015;
+        kf.rotation.y += 0.02;
+        kf.position.y += Math.sin(playheadTime + idx) * 0.005;
+      });
+
+      if (playheadLine) {
+        playheadLine.position.x = 7 + Math.sin(playheadTime * 0.75) * 9;
+      }
+
+      if (timelineGroup) {
+        timelineGroup.rotation.y = -0.42 + (mouseX * 0.12);
+        timelineGroup.rotation.x = 0.12 + (-mouseY * 0.12);
+
+        const isMobile = window.innerWidth < 768;
+        const scrollOffset = scrollY * 0.003;
+        timelineGroup.position.x = (isMobile ? 6 : 13) - (scrollOffset * 3);
+      }
+
+      if (floatingParticles) {
+        floatingParticles.rotation.y += 0.0006;
+      }
+
+      renderer.render(scene, camera);
+    }
+
+    window.addEventListener('resize', () => {
+      if (!camera || !renderer) return;
+      const isMobile = window.innerWidth < 768;
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.position.z = isMobile ? 38 : 32;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    window.addEventListener('DOMContentLoaded', init3DVideoScene);
+
+    // ================= LIVE TIMELINE SCRUBBER HUD LOGIC =================
+    const hudTimecode = document.getElementById('hudTimecode');
+    const hudScrubberFill = document.getElementById('hudScrubberFill');
+
+    function updateLiveScrubberHUD() {
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = Math.max(0, Math.min(1, scrollY / (maxScroll || 1)));
+
+      if (hudScrubberFill) {
+        hudScrubberFill.style.width = `${progress * 100}%`;
+      }
+
+      const totalFrames = Math.floor(progress * 16200);
+      const hrs = Math.floor(totalFrames / (3600 * 60));
+      const mins = Math.floor((totalFrames % (3600 * 60)) / (60 * 60));
+      const secs = Math.floor((totalFrames % (60 * 60)) / 60);
+      const frames = totalFrames % 60;
+
+      const pad = (n) => String(n).padStart(2, '0');
+      if (hudTimecode) {
+        hudTimecode.innerHTML = `${pad(hrs)}:${pad(mins)}:${pad(secs)}:<span class="frames">${pad(frames)}</span>`;
+      }
+    }
+
+    // ================= INTERACTIVE COLOR GRADING SPLIT-COMPARE SLIDER =================
+    function updateSplitCompare(val) {
+      const rawWrap = document.getElementById('compareRawWrap');
+      const divider = document.getElementById('splitDivider');
+      if (!rawWrap || !divider) return;
+
+      rawWrap.style.clipPath = `polygon(0 0, ${val}% 0, ${val}% 100%, 0 100%)`;
+      divider.style.left = `${val}%`;
+    }
+
+    
+    // =========================================================================
+    // =========================================================================
+    // 🎧 ULTRA-SOFT, HEADPHONE-FRIENDLY LO-FI AMBIENT SYNTHESIZER
+    // Warm Rhodes Electric Piano | Steep 520Hz Lowpass Filter | Zero Harsh Frequencies
+    // =========================================================================
+    let audioCtx = null;
+    let isAmbientPlaying = false;
+    let ambientTimer = null;
+    let ambientStepIdx = 0;
+    let masterFilter = null;
+    let masterGain = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        audioCtx = new AudioContext();
+
+        // 1. Warm Analog Low-pass Filter (completely rolls off harsh treble & piercing high frequencies)
+        masterFilter = audioCtx.createBiquadFilter();
+        masterFilter.type = 'lowpass';
+        masterFilter.frequency.setValueAtTime(520, audioCtx.currentTime);
+        masterFilter.Q.setValueAtTime(0.7, audioCtx.currentTime);
+
+        // 2. Soft Master Gain (delicate, comfortable volume for earphones/headphones)
+        masterGain = audioCtx.createGain();
+        masterGain.gain.setValueAtTime(0.045, audioCtx.currentTime);
+
+        masterFilter.connect(masterGain);
+        masterGain.connect(audioCtx.destination);
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    // Peaceful, Mind-Refreshing Lo-Fi Chord Sequence (C Major / A Minor Warm Aesthetic)
+    const loFiChords = [
+      // 1. Cmaj9 (warm, open, serene)
+      { bass: 130.81, notes: [261.63, 329.63, 392.00, 493.88], dur: 3.2 },
+      // 2. Em7 (emotional, relaxing)
+      { bass: 164.81, notes: [246.94, 293.66, 329.63, 392.00], dur: 3.0 },
+      // 3. Am9 (deep, cozy, reflective)
+      { bass: 110.00, notes: [220.00, 261.63, 329.63, 440.00], dur: 3.4 },
+      // 4. Fmaj7 (uplifting, soft)
+      { bass: 174.61, notes: [261.63, 329.63, 349.23, 440.00], dur: 3.0 },
+      // 5. Dm9 (gentle, mellow)
+      { bass: 146.83, notes: [261.63, 293.66, 349.23, 440.00], dur: 3.0 },
+      // 6. Gsus4 -> G (warm resolution)
+      { bass: 196.00, notes: [261.63, 293.66, 392.00, 523.25], dur: 3.4 }
+    ];
+
+    function playSoftRhodesNote(freq, vel = 0.5, dur = 2.4, delaySec = 0) {
+      if (!audioCtx || !isAmbientPlaying || !freq) return;
+      try {
+        const startT = audioCtx.currentTime + delaySec;
+        const osc1 = audioCtx.createOscillator();
+        const osc2 = audioCtx.createOscillator();
+        const noteGain = audioCtx.createGain();
+        const osc2Gain = audioCtx.createGain();
+
+        // Pure smooth sine wave tone (fundamental)
+        osc1.type = 'sine';
+        osc1.frequency.setValueAtTime(freq, startT);
+
+        // Subtle warm 2nd harmonic (octave)
+        osc2.type = 'sine';
+        osc2.frequency.setValueAtTime(freq * 2.0, startT);
+        osc2Gain.gain.setValueAtTime(0.12, startT);
+
+        // Soft, rounded attack (38ms) - zero click, zero piercing pop!
+        noteGain.gain.setValueAtTime(0.0001, startT);
+        noteGain.gain.linearRampToValueAtTime(vel * 0.42, startT + 0.038);
+        noteGain.gain.exponentialRampToValueAtTime(vel * 0.11, startT + 0.45);
+        noteGain.gain.exponentialRampToValueAtTime(0.00001, startT + dur);
+
+        osc1.connect(noteGain);
+        osc2.connect(osc2Gain);
+        osc2Gain.connect(noteGain);
+        noteGain.connect(masterFilter);
+
+        osc1.start(startT);
+        osc2.start(startT);
+        osc1.stop(startT + dur + 0.1);
+        osc2.stop(startT + dur + 0.1);
+      } catch (e) {}
+    }
+
+    function scheduleLoFiStep() {
+      if (!isAmbientPlaying) return;
+      const step = loFiChords[ambientStepIdx];
+
+      // Bass note
+      if (step.bass) {
+        playSoftRhodesNote(step.bass, 0.48, step.dur + 0.5, 0);
+      }
+
+      // Staggered arpeggiated chord notes (organic gentle human feel)
+      if (step.notes) {
+        step.notes.forEach((f, i) => {
+          playSoftRhodesNote(f, 0.35, step.dur, i * 0.07);
+        });
+      }
+
+      ambientStepIdx = (ambientStepIdx + 1) % loFiChords.length;
+      ambientTimer = setTimeout(scheduleLoFiStep, (step.dur * 1000) - 80);
+    }
+
+    window.toggleAmbientSoundtrack = function() {
+      const ctx = getAudioContext();
+      isAmbientPlaying = !isAmbientPlaying;
+
+      const audioBtn = document.getElementById('audioToggleBtn');
+      const audioText = document.getElementById('audioBtnText');
+
+      if (isAmbientPlaying) {
+        if (audioBtn) audioBtn.classList.add('playing');
+        if (audioText) audioText.textContent = '🎵 LO-FI AMBIENT: ON';
+        scheduleLoFiStep();
+      } else {
+        if (audioBtn) audioBtn.classList.remove('playing');
+        if (audioText) audioText.textContent = 'AMBIENT: OFF';
+        if (ambientTimer) {
+          clearTimeout(ambientTimer);
+          ambientTimer = null;
+        }
+      }
+    };
+
+    function playWhooshCutSFX() {
+      const ctx = getAudioContext();
+      const now = ctx.currentTime;
+
+      const bufferSize = ctx.sampleRate * 0.25;
+      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = Math.random() * 2 - 1;
+      }
+
+      const noise = ctx.createBufferSource();
+      noise.buffer = buffer;
+
+      const whooshFilter = ctx.createBiquadFilter();
+      whooshFilter.type = 'bandpass';
+      whooshFilter.frequency.setValueAtTime(300, now);
+      whooshFilter.frequency.exponentialRampToValueAtTime(3200, now + 0.12);
+      whooshFilter.frequency.exponentialRampToValueAtTime(400, now + 0.25);
+      whooshFilter.Q.setValueAtTime(2.5, now);
+
+      const whooshGain = ctx.createGain();
+      whooshGain.gain.setValueAtTime(0.001, now);
+      whooshGain.gain.linearRampToValueAtTime(0.05, now + 0.08);
+      whooshGain.exponentialRampToValueAtTime && whooshGain.gain.exponentialRampToValueAtTime(0.0001, now + 0.25);
+
+      noise.connect(whooshFilter);
+      whooshFilter.connect(whooshGain);
+      whooshGain.connect(ctx.destination);
+
+      noise.start(now);
+    }
+
+    function playSubImpactSFX() {
+      const ctx = getAudioContext();
+      const now = ctx.currentTime;
+
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(120, now);
+      osc.frequency.exponentialRampToValueAtTime(32, now + 0.45);
+
+      gain.gain.setValueAtTime(0.001, now);
+      gain.gain.linearRampToValueAtTime(0.12, now + 0.03);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.5);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start(now);
+      osc.stop(now + 0.55);
+    }
+
+    function playTensionRiserSFX() {
+      const ctx = getAudioContext();
+      const now = ctx.currentTime;
+
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(140, now);
+      osc.frequency.exponentialRampToValueAtTime(880, now + 0.7);
+
+      gain.gain.setValueAtTime(0.001, now);
+      gain.gain.linearRampToValueAtTime(0.035, now + 0.6);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.75);
+
+      const riserFilter = ctx.createBiquadFilter();
+      riserFilter.type = 'lowpass';
+      riserFilter.frequency.setValueAtTime(400, now);
+      riserFilter.frequency.linearRampToValueAtTime(3000, now + 0.7);
+
+      osc.connect(riserFilter);
+      riserFilter.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start(now);
+      osc.stop(now + 0.8);
+    }
+
+    function playGlitchChirpSFX() {
+      const ctx = getAudioContext();
+      const now = ctx.currentTime;
+
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.type = 'square';
+      osc.frequency.setValueAtTime(1800, now);
+      osc.frequency.setValueAtTime(600, now + 0.04);
+      osc.frequency.setValueAtTime(2400, now + 0.08);
+
+      gain.gain.setValueAtTime(0.04, now);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.14);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start(now);
+      osc.stop(now + 0.15);
+    }
+
+    function toggleAudio() {
+      getAudioContext();
+      isAudioPlaying = !isAudioPlaying;
+      const audioBtn = document.getElementById('audioToggleBtn');
+      const audioText = document.getElementById('audioBtnText');
+
+      if (isAudioPlaying) {
+        audioBtn.classList.add('playing');
+        audioText.textContent = 'AMBIENT: ON';
+        playSoftChord(chords[chordIdx]);
+        synthInterval = setInterval(() => {
+          chordIdx = (chordIdx + 1) % chords.length;
+          playSoftChord(chords[chordIdx]);
+        }, 3600);
+      } else {
+        audioBtn.classList.remove('playing');
+        audioText.textContent = 'AMBIENT: OFF';
+        clearInterval(synthInterval);
+      }
+    }
+
+    document.getElementById('audioToggleBtn').addEventListener('click', toggleAudio);
+
+    function modulateAudioWithScroll() {
+      if (!filterNode || !audioCtx || !isAudioPlaying) return;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const factor = Math.max(0, Math.min(1, scrollY / (maxScroll || 1)));
+
+      const targetFreq = 500 + (factor * 3300);
+      filterNode.frequency.setTargetAtTime(targetFreq, audioCtx.currentTime, 0.15);
+    }
+
+    // ================= MOVE & MATCH SCROLL OBSERVER FOR ALL TITLES =================
+    const scrollMatches = document.querySelectorAll('.scroll-slide-match');
+    const scrollObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('slide-active');
+        }
+      });
+    }, { threshold: 0.15 });
+    scrollMatches.forEach(el => scrollObserver.observe(el));
+
+    // ================= PRECISION RETICLE CURSOR & SPARKS (DESKTOP ONLY) =================
+    const cursorCore = document.getElementById('cursorCore');
+    const cursorReticle = document.getElementById('cursorReticle');
+    const cursorLabel = document.getElementById('cursorLabel');
+
+    if (cursorCore && cursorReticle) {
+      let curX = window.innerWidth / 2, curY = window.innerHeight / 2;
+      let retX = curX, retY = curY;
+      let sparkThrottle = 0;
+
+      window.addEventListener('mousemove', (e) => {
+        curX = e.clientX;
+        curY = e.clientY;
+        cursorCore.style.left = `${curX}px`;
+        cursorCore.style.top = `${curY}px`;
+
+        sparkThrottle++;
+        if (sparkThrottle % 4 === 0) {
+          spawnSpark(curX, curY);
+        }
+      });
+
+      function animateReticle() {
+        retX += (curX - retX) * 0.2;
+        retY += (curY - retY) * 0.2;
+        cursorReticle.style.left = `${retX}px`;
+        cursorReticle.style.top = `${retY}px`;
+        if (cursorLabel) {
+          cursorLabel.style.left = `${retX}px`;
+          cursorLabel.style.top = `${retY}px`;
+        }
+        requestAnimationFrame(animateReticle);
+      }
+      animateReticle();
+
+      function spawnSpark(x, y) {
+        const spark = document.createElement('div');
+        spark.className = 'spark-node';
+        const size = Math.random() * 4 + 2;
+        const angle = Math.random() * Math.PI * 2;
+        const dist = Math.random() * 24 + 10;
+        const dx = Math.cos(angle) * dist;
+        const dy = Math.sin(angle) * dist;
+        const colors = ['#00f5ff', '#10b981', '#ffffff'];
+        const col = colors[Math.floor(Math.random() * colors.length)];
+
+        spark.style.width = `${size}px`;
+        spark.style.height = `${size}px`;
+        spark.style.background = col;
+        spark.style.boxShadow = `0 0 10px ${col}`;
+        spark.style.left = `${x}px`;
+        spark.style.top = `${y}px`;
+        spark.style.setProperty('--dx', `${dx}px`);
+        spark.style.setProperty('--dy', `${dy}px`);
+
+        document.body.appendChild(spark);
+        setTimeout(() => spark.remove(), 650);
+      }
+
+      document.querySelectorAll('a, button, .work-card, .software-tile, .contact-card-link').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          cursorReticle.classList.add('active');
+          const custom = el.getAttribute('data-hover');
+          if (custom && cursorLabel) {
+            cursorLabel.textContent = custom;
+            cursorLabel.style.display = 'block';
+          }
+        });
+        el.addEventListener('mouseleave', () => {
+          cursorReticle.classList.remove('active');
+          if (cursorLabel) cursorLabel.style.display = 'none';
+        });
+      });
+    }
+
+        // =========================================================================
+    // 🎴 DYNAMIC 3D TACTILE PUSH-DOWN TILT (6 WORK CARDS & SOFTWARE TILES)
+    // Tactile depth: side under cursor depresses smoothly into screen
+    // =========================================================================
+    document.querySelectorAll('.work-card, .software-tile').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const cx = rect.width / 2;
+        const cy = rect.height / 2;
+        
+        // Tactile depression: cursor pushes the touched side down into the surface
+        const rotX = ((y - cy) / cy) * -7.5;
+        const rotY = ((x - cx) / cx) * 7.5;
+        
+        card.style.transition = 'transform 0.05s ease-out';
+        card.style.transform = `perspective(800px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateY(-5px)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transition = 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+        card.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+      });
+
+      card.addEventListener('mouseenter', () => {
+        try { playGlitchChirpSFX(); } catch(e){}
+      });
+    });
+
+    // =========================================================================
+    // 🎬 GENTLE & SUBTLE 3D TILT ON DIRECTOR PHOTO POD (REDUCED SENSITIVITY)
+    // Calmed from dizzying 10deg down to an ultra-subtle, elegant 2.8deg
+    // =========================================================================
+    const directorPodCard = document.getElementById('directorPodCard');
+    if (directorPodCard) {
+      directorPodCard.addEventListener('mousemove', (e) => {
+        const rect = directorPodCard.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const cx = rect.width / 2;
+        const cy = rect.height / 2;
+        
+        // Gentle, subtle angles (no dizziness)
+        const rx = ((y - cy) / cy) * -2.8;
+        const ry = ((x - cx) / cx) * 2.8;
+        
+        directorPodCard.style.transition = 'transform 0.08s ease-out';
+        directorPodCard.style.transform = `perspective(1000px) rotateX(${rx.toFixed(2)}deg) rotateY(${ry.toFixed(2)}deg) translateY(-2px)`;
+      });
+
+      directorPodCard.addEventListener('mouseleave', () => {
+        directorPodCard.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+        directorPodCard.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+      });
+    }
+
+    // Lightbox Modal Inspection
+    // =========================================================================
+    // 💡 6 CURATED WORKS - OFFICIAL TITLES, IMAGES & DIRECT GOOGLE DRIVE LINKS
+    // =========================================================================
+    const workDetails = {
+      panther: {
+        title: "AR Panther Corporate Brand Manual",
+        cat: "BRAND IDENTITY // CORPORATE MANUAL",
+        img: "portfolio_assets/my_company_AR Panther.png",
+        driveLink: "https://drive.google.com/drive/folders/1jCblb14ge1HO2TQpQ8NhFiyJIKJsuHWm",
+        desc: "A comprehensive 18-page vector corporate design manual for AR Panther, incorporating precision logo construction, golden ratio margins, CMYK / RGB color profiles, and executive corporate stationery.",
+        tool: "Adobe Photoshop & Illustrator",
+        color: "Pantone & CMYK Press-Ready",
+        res: "18-Page High-Res Vector Manual"
+      },
+      three_fold: {
+        title: "Three Fold ",
+        cat: "EDITORIAL PRINT // 3-FOLD BROCHURE",
+        img: "portfolio_assets/3_fold_3 fold 1.png",
+        driveLink: "https://drive.google.com/drive/folders/1eKR-tx2HXigPajIpDJH76CwvoobETsfW",
+        desc: "Precision 3-fold corporate brochure engineered for Scandinavian interior architecture and luxury furniture collections. Multi-column editorial typography with exact print bleeds and CMYK color calibration.",
+        tool: "CorelDRAW & Adobe InDesign",
+        color: "CMYK Coated Matte 300DPI",
+        res: "A4 3-Fold Spread (6 Panels)"
+      },
+      two_fold: {
+        title: "Two Fold",
+        cat: "CORPORATE PRINT // 2-FOLD BROCHURE",
+        img: "portfolio_assets/2_fold_1.png",
+        driveLink: "https://drive.google.com/drive/folders/1o4s-3BQ2Sm23b6jSeCF6CGNJX40WQN48",
+        desc: "Double-panel bi-fold executive corporate brochure with balanced grid layouts, typography hierarchies, photographic framing, and high-impact corporate storytelling.",
+        tool: "CorelDRAW & Photoshop CC",
+        color: "CMYK Press Profile 300DPI",
+        res: "Bi-Fold 4-Page Corporate Spread"
+      },
+      flyer: {
+        title: "Flyer",
+        cat: "MARKETING & PROMOTION // COMMERCIAL FLYER",
+        img: "portfolio_assets/flyer_hd.png",
+        driveLink: "https://drive.google.com/drive/folders/14f4MHWXs8f-4r0E-KXIt_v1y96An-6ak",
+        desc: "High-conversion commercial marketing flyer designed with visual focal hierarchy, bold headline typography, targeted call-to-actions, and balanced negative space.",
+        tool: "Photoshop CC & Canva Pro",
+        color: "sRGB Digital & CMYK Print Ready",
+        res: "A4 Full-Bleed High-Res 300DPI"
+      },
+      poster: {
+        title: "Poster Design",
+        cat: "SPORTS & KEY ART // COMMERCIAL POSTER",
+        img: "portfolio_assets/poster_cricket_hd.png",
+        driveLink: "https://drive.google.com/drive/folders/1AEswWmQL12yDfZirVInuDrghpxcotcp9",
+        desc: "High-octane sports tournament key art featuring stadium floodlight illumination, particle smoke overlays, dynamic typography, and high-impact visual composition.",
+        tool: "Adobe Photoshop & After Effects",
+        color: "sRGB High-Vibrance Master",
+        res: "4K Poster Key Art (4500x5625)"
+      },
+      logo: {
+        title: "Logo Design",
+        cat: "BRAND IDENTITY // VECTOR LOGO DESIGN",
+        img: "portfolio_assets/logo_14_hd.png",
+        driveLink: "https://drive.google.com/drive/folders/1sHbTp1EjZy6ejEjXrzKOBofxKkuKG1BH",
+        desc: "Custom geometric brand mark and vector logo design engineered with precision grid alignment, memorable silhouette psychology, and multi-surface versatility.",
+        tool: "Adobe Illustrator & CorelDRAW",
+        color: "Vector Pantone & RGB Pure",
+        res: "Infinite Scalable Vector Master"
+      }
+    };
+
+    const lightboxModal = document.getElementById('lightboxModal');
+    const modalImg = document.getElementById('modalImg');
+    const modalCategory = document.getElementById('modalCategory');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalTool = document.getElementById('modalTool');
+    const modalColor = document.getElementById('modalColor');
+    const modalResolution = document.getElementById('modalResolution');
+
+    const modalDriveLink = document.getElementById('modalDriveLink');
+
+    function openModal(key) {
+      const data = workDetails[key];
+      if (!data) return;
+      modalImg.src = data.img;
+      modalCategory.textContent = data.cat;
+      modalTitle.textContent = data.title;
+      modalDesc.textContent = data.desc;
+      modalTool.textContent = data.tool;
+      modalColor.textContent = data.color;
+      modalResolution.textContent = data.res;
+      if (modalDriveLink && data.driveLink) {
+        modalDriveLink.href = data.driveLink;
+      }
+      lightboxModal.style.display = 'flex';
+    }
+
+    function closeModal() {
+      lightboxModal.style.display = 'none';
+    }
+
+    lightboxModal.addEventListener('click', (e) => {
+      if (e.target === lightboxModal) closeModal();
+    });
+
+    
+    // ==========================================
+    // TALL AESTHETIC FONT PRESET SWITCHER
+    // ==========================================
+        // Font Presets Cycler (Global Function)
+    const fontPresets = [
+      { id: 'tall', label: 'FONT: TALL CINEMATIC', title: "'Bebas Neue', 'Plus Jakarta Sans', sans-serif" },
+      { id: 'futuristic', label: 'FONT: CYBER EXPERT', title: "'Orbitron', 'Space Grotesk', sans-serif" },
+      { id: 'editorial', label: 'FONT: LUXURY EDITORIAL', title: "'Cinzel', 'Playfair Display', serif" },
+      { id: 'modern', label: 'FONT: GEOMETRIC PRO', title: "'Syne', 'Plus Jakarta Sans', sans-serif" }
+    ];
+
+    let currentPresetIdx = 0;
+    window.cycleFontPresets = function() {
+      currentPresetIdx = (currentPresetIdx + 1) % fontPresets.length;
+      const p = fontPresets[currentPresetIdx];
+      document.documentElement.style.setProperty('--font-title', p.title);
+      const fontPresetLabel = document.getElementById('fontPresetLabel');
+      if (fontPresetLabel) fontPresetLabel.textContent = p.label;
+      try { playGlitchChirpSFX(); } catch (e) {}
+    };
+
+    
+    // ==========================================
+    // 5TH SFX: STUDIO SHUTTER & FLASH SNAP
+    // ==========================================
+    function playShutterFlashSFX() {
+      const ctx = getAudioContext();
+      if (!ctx) return;
+      const now = ctx.currentTime;
+
+      // 1. Mechanical Shutter Click (High noise burst)
+      const bufferSize = ctx.sampleRate * 0.05;
+      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+      const data = buffer.getChannelData(0);
+      for (let i = 0; i < bufferSize; i++) {
+        data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (ctx.sampleRate * 0.008));
+      }
+      const noise = ctx.createBufferSource();
+      noise.buffer = buffer;
+      const noiseGain = ctx.createGain();
+      noiseGain.gain.setValueAtTime(0.4, now);
+      noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+      noise.connect(noiseGain);
+      noiseGain.connect(masterGain);
+      noise.start(now);
+
+      // 2. Flash Recharge Tone (Rising high sine)
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(1800, now + 0.03);
+      osc.frequency.exponentialRampToValueAtTime(3200, now + 0.28);
+      gain.gain.setValueAtTime(0.12, now + 0.03);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+      osc.connect(gain);
+      gain.connect(masterGain);
+      osc.start(now + 0.03);
+      osc.stop(now + 0.32);
+    }
+
+    // ==========================================
+    // INTERACTIVE SPEED RAMP CONTROLLER
+    // ==========================================
+    function setSpeedRamp(idx, label, pathD, btnEl) {
+      document.querySelectorAll('.btn-speed-preset').forEach(b => b.classList.remove('active'));
+      if (btnEl) btnEl.classList.add('active');
+      const tag = document.getElementById('speedRampTag');
+      const path = document.getElementById('speedRampCurvePath');
+      if (tag) tag.textContent = label;
+      if (path) path.setAttribute('d', pathD);
+      playGlitchChirpSFX();
+    }
+
+    // ==========================================
+    // MODAL ADVANCED CYCLING & KEYBOARD SHORTCUTS
+    // ==========================================
+    const modalKeyList = Object.keys(workDetails);
+    let currentModalIdx = 0;
+
+    function openModalByIndex(idx) {
+      currentModalIdx = (idx + modalKeyList.length) % modalKeyList.length;
+      const key = modalKeyList[currentModalIdx];
+      const data = workDetails[key];
+      if (!data) return;
+
+      modalImg.src = data.img;
+      modalCategory.textContent = data.cat;
+      modalTitle.textContent = data.title;
+      modalDesc.textContent = data.desc;
+      modalTool.textContent = data.tool;
+      modalColor.textContent = data.color;
+      modalResolution.textContent = data.res;
+      if (modalDriveLink && data.driveLink) {
+        modalDriveLink.href = data.driveLink;
+      }
+      
+      const counterEl = document.getElementById('modalCounterBadge');
+      if (counterEl) {
+        counterEl.textContent = `0${currentModalIdx + 1} / 0${modalKeyList.length}`;
+      }
+
+      lightboxModal.style.display = 'flex';
+    }
+
+    function navModal(direction) {
+      openModalByIndex(currentModalIdx + direction);
+    }
+
+    // Update original openModal to sync index
+    const origOpenModal = openModal;
+    openModal = function(key) {
+      const idx = modalKeyList.indexOf(key);
+      if (idx !== -1) {
+        openModalByIndex(idx);
+      } else {
+        origOpenModal(key);
+      }
+    };
+
+    // Keyboard listener for ESC, ArrowLeft, ArrowRight
+    window.addEventListener('keydown', (e) => {
+      if (lightboxModal.style.display === 'flex') {
+        if (e.key === 'Escape') closeModal();
+        if (e.key === 'ArrowRight') navModal(1);
+        if (e.key === 'ArrowLeft') navModal(-1);
+      }
+    });
+
+    // ==========================================
+    // FLOATING BACK TO TOP BUTTON
+    // ==========================================
+    const btnFloatingTop = document.getElementById('btnFloatingTop');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        btnFloatingTop.classList.add('visible');
+      } else {
+        btnFloatingTop.classList.remove('visible');
+      }
+    }, { passive: true });
+
+    btnFloatingTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // ==========================================
+    // BEFORE/AFTER SLIDER CINEMATIC AUTO-NUDGE
+    // ==========================================
+    let hasNudgedSlider = false;
+    const showcaseSec = document.getElementById('showcase');
+    const compareSlider = document.getElementById('compareSlider');
+
+    if (showcaseSec && compareSlider) {
+      const nudgeObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !hasNudgedSlider) {
+            hasNudgedSlider = true;
+            // Cinematic oscillation to tease interactivity
+            let step = 0;
+            const values = [50, 56, 62, 58, 48, 42, 45, 50];
+            const interval = setInterval(() => {
+              if (step >= values.length) {
+                clearInterval(interval);
+                return;
+              }
+              compareSlider.value = values[step];
+              updateSplitCompare(values[step]);
+              step++;
+            }, 75);
+          }
+        });
+      }, { threshold: 0.35 });
+
+      nudgeObserver.observe(showcaseSec);
+    }
+
+    
+    // =========================================================================
+    // 🎬 CINEMATIC SCENE CUTTER & YOUTUBE WHIP TRANSITION CONTROLLER
+    // =========================================================================
+    
+    // =========================================================================
+    // 🎬 ARYA AKBARI DIRECTOR PHOTO CONTROLLER (INSTANT & BULLETPROOF)
+    // Scene 01: RAW STUDIO B&W | Scene 02: NATURAL HUMAN COLOR | Scene 03: DIRECTOR POSE 02
+    // =========================================================================
+    const sceneList = [
+      {
+        title: "01 — STUDIO RAW B&W (MONOCHROME)",
+        tag: "RAW B&W",
+        img: "portfolio_assets/arya_scene_1_bw.jpg",
+        clipTab: "clipTab1",
+        playheadPos: "16%",
+        isColor: false
+      },
+      {
+        title: "02 — RETOUCHED NATURAL HUMAN SKIN COLOR",
+        tag: "NATURAL SKIN",
+        img: "portfolio_assets/arya_scene_1_color.jpg",
+        clipTab: "clipTab2",
+        playheadPos: "50%",
+        isColor: true
+      },
+      {
+        title: "03 — EDITORIAL DIRECTOR POSE 02 (THINKER)",
+        tag: "POSE 02",
+        img: "portfolio_assets/arya_scene_2_color.jpg",
+        clipTab: "clipTab3",
+        playheadPos: "83%",
+        isColor: true
+      }
+    ];
+
+    let currentSceneIdx = 0;
+
+    window.executeSceneTransition = function(nextIdx, transitionType) {
+      currentSceneIdx = (nextIdx + sceneList.length) % sceneList.length;
+      const targetScene = sceneList[currentSceneIdx];
+      if (!targetScene) return;
+
+      const imgEl = document.getElementById('aryaPortraitImg');
+      const frameEl = document.getElementById('directorPhotoFrame');
+      const playhead = document.getElementById('miniTimelinePlayhead');
+      const counter = document.getElementById('hudSceneCounter');
+      const caption = document.getElementById('sceneCaptionText');
+
+      // 1. INSTANT PHYSICAL IMAGE SWAP
+      if (imgEl) {
+        imgEl.src = targetScene.img;
+        imgEl.setAttribute('src', targetScene.img);
+        imgEl.style.opacity = '0.9';
+        requestAnimationFrame(() => {
+          imgEl.style.opacity = '1';
+        });
+      }
+
+      // 2. TIMELINE TAB HIGHLIGHTS
+      document.querySelectorAll('.timeline-clip').forEach((clip, i) => {
+        if (i === currentSceneIdx) {
+          clip.classList.add('active');
+        } else {
+          clip.classList.remove('active');
+        }
+      });
+
+      if (playhead) playhead.style.left = targetScene.playheadPos;
+      if (counter) {
+        counter.textContent = `SCENE 0${currentSceneIdx + 1} / 03: ${targetScene.tag}`;
+      }
+      if (caption) {
+        caption.innerHTML = `<span>ACTIVE SCENE:</span> <strong>${targetScene.title}</strong>`;
+      }
+
+      // 3. FLASH / WHIP CUT ANIMATION
+      if (frameEl) {
+        const animClass = transitionType === 'whip' ? 'transitioning-whip' : 'transitioning-jump';
+        frameEl.classList.remove('transitioning-whip', 'transitioning-jump');
+        void frameEl.offsetWidth; // force reflow
+        frameEl.classList.add(animClass);
+        setTimeout(() => {
+          frameEl.classList.remove(animClass);
+        }, 360);
+      }
+
+      // 4. NON-BLOCKING TACTILE SFX
+      try {
+        if (typeof playWhooshCutSFX === 'function') {
+          playWhooshCutSFX();
+        }
+      } catch (err) {}
+    };
+
+    window.selectScene = function(idx) {
+      window.executeSceneTransition(idx, 'whip');
+    };
+
+    window.triggerSceneCut = function(type) {
+      const nextIdx = (currentSceneIdx + 1) % sceneList.length;
+      window.executeSceneTransition(nextIdx, type || 'jump');
+    };
+
+    window.toggleColorGrading = function() {
+      if (currentSceneIdx === 0) {
+        window.executeSceneTransition(1, 'whip');
+      } else {
+        window.executeSceneTransition(0, 'jump');
+      }
+    };
+
+    // Attach click listener to photo frame for direct toggling
+    const photoFrameEl = document.getElementById('directorPhotoFrame');
+    if (photoFrameEl) {
+      photoFrameEl.style.cursor = 'pointer';
+      photoFrameEl.addEventListener('click', (e) => {
+        if (!e.target.closest('.floating-badge')) {
+          window.triggerSceneCut('jump');
+        }
+      });
+    }
+
+    // Explicitly attach event listeners to buttons
+    document.getElementById('clipTab1')?.addEventListener('click', () => window.selectScene(0));
+    document.getElementById('clipTab2')?.addEventListener('click', () => window.selectScene(1));
+    document.getElementById('clipTab3')?.addEventListener('click', () => window.selectScene(2));
+    document.querySelector('.btn-jump-cut')?.addEventListener('click', () => window.triggerSceneCut('jump'));
+    document.querySelector('.btn-whip-cut')?.addEventListener('click', () => window.triggerSceneCut('whip'));
+
+    // Live Ticking Sequence Timecode
+    const podTimecode = document.getElementById('podTimecode');
+    let podF = 18;
+    let podS = 24;
+    setInterval(() => {
+      podF = (podF + 1) % 60;
+      if (podF === 0) podS = (podS + 1) % 60;
+      const ff = String(podF).padStart(2, '0');
+      const ss = String(podS).padStart(2, '0');
+      if (podTimecode) podTimecode.textContent = `00:01:${ss}:${ff}`;
+    }, 1000 / 30);
+
+    // Copy Email Toast
+    const copyMailBtn = document.getElementById('copyMailBtn');
+    const toastPill = document.getElementById('toastPill');
+
+    copyMailBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      navigator.clipboard.writeText('aryaakbari2008@gmail.com').then(() => {
+        toastPill.classList.add('show');
+        setTimeout(() => toastPill.classList.remove('show'), 2600);
+      });
+    });
+  
+    // Initialize 3D Scene and Observers
+    window.addEventListener('DOMContentLoaded', () => {
+      if (typeof init3DVideoScene === 'function') {
+        init3DVideoScene();
+      }
+    });
+</script>
+  <!-- Floating Quick Back-To-Top Button -->
+  <button class="btn-floating-top" id="btnFloatingTop" title="Back to top">↑</button>
+
+</body>
+</html>

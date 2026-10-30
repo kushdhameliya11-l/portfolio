@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48">
+  <defs>
+    <linearGradient id="cdrGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#78BE20"/>
+      <stop offset="60%" stop-color="#00A651"/>
+      <stop offset="100%" stop-color="#007A3D"/>
+    </linearGradient>
+  </defs>
+  <path d="M24 2C13 2 4 11 4 22c0 8.5 5.5 15.5 13 18.5V44c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2v-3.5c7.5-3 13-10 13-18.5C44 11 35 2 24 2z" fill="url(#cdrGrad)"/>
+  <path d="M21 41h6v3h-6z" fill="#FFB81C"/>
+  <ellipse cx="24" cy="21" rx="5" ry="17" fill="#ffffff" opacity="0.35"/>
+  <path d="M14 10c-3 3-5 7-5 12 0 4 1.5 8 4 11" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.4"/>
+  <path d="M34 10c3 3 5 7 5 12 0 4-1.5 8-4 11" fill="none" stroke="#ffffff" stroke-width="2" opacity="0.4"/>
+</svg>
